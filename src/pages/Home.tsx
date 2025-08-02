@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Target, TrendingUp, Zap, Users, Globe, Award } from 'lucide-react';
+import CountUpNumber from '../components/CountUpNumber';
+import AnimatedCard from '../components/AnimatedCard';
 
 const Home = () => {
   const coreValues = [
@@ -25,10 +27,10 @@ const Home = () => {
   ];
 
   const impactStats = [
-    { number: '10,000+', label: 'Lives Impacted', icon: Users },
-    { number: '50+', label: 'Countries Reached', icon: Globe },
-    { number: '25+', label: 'Awards Won', icon: Award },
-    { number: '6', label: 'Years of Excellence', icon: TrendingUp }
+    { number: 10000, label: 'Lives Impacted', icon: Users, suffix: '+' },
+    { number: 50, label: 'Countries Reached', icon: Globe, suffix: '+' },
+    { number: 25, label: 'Awards Won', icon: Award, suffix: '+' },
+    { number: 6, label: 'Years of Excellence', icon: TrendingUp }
   ];
 
   const programs = [
@@ -52,7 +54,8 @@ const Home = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 text-white">
+      <AnimatedCard animation="fadeIn">
+        <section className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
@@ -81,6 +84,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+      </AnimatedCard>
 
       {/* Core Values */}
       <section className="py-20 bg-gray-50">
@@ -96,13 +100,15 @@ const Home = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {coreValues.map((value, index) => (
-              <div key={index} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <AnimatedCard key={index} animation="slideUp" delay={index * 200}>
+                <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
                 <div className={`w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-6 ${value.color}`}>
                   <value.icon className="h-8 w-8" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">{value.title}</h3>
                 <p className="text-gray-600 leading-relaxed">{value.description}</p>
               </div>
+              </AnimatedCard>
             ))}
           </div>
         </div>
@@ -122,13 +128,21 @@ const Home = () => {
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {impactStats.map((stat, index) => (
-              <div key={index} className="text-center">
+              <AnimatedCard key={index} animation="zoomIn" delay={index * 150}>
+                <div className="text-center">
                 <div className="w-16 h-16 mx-auto bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
                   <stat.icon className="h-8 w-8 text-white" />
                 </div>
-                <div className="text-3xl md:text-4xl font-bold text-white mb-2">{stat.number}</div>
+                <div className="text-3xl md:text-4xl font-bold text-white mb-2">
+                  <CountUpNumber 
+                    end={stat.number} 
+                    suffix={stat.suffix || ''} 
+                    duration={2500}
+                  />
+                </div>
                 <div className="text-blue-100 font-medium">{stat.label}</div>
               </div>
+              </AnimatedCard>
             ))}
           </div>
         </div>
@@ -148,7 +162,8 @@ const Home = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {programs.map((program, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <AnimatedCard key={index} animation="slideUp" delay={index * 200}>
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                 <img
                   src={program.image}
                   alt={program.name}
@@ -166,6 +181,7 @@ const Home = () => {
                   </Link>
                 </div>
               </div>
+              </AnimatedCard>
             ))}
           </div>
           

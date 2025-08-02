@@ -1,46 +1,55 @@
 import React from 'react';
 import { Users, Globe, Award, TrendingUp, Heart, Star } from 'lucide-react';
+import CountUpNumber from '../components/CountUpNumber';
+import AnimatedCard from '../components/AnimatedCard';
 
 const Impact = () => {
   const impactStats = [
     {
       icon: Users,
-      number: '10,000+',
+      number: 10000,
+      suffix: '+',
       label: 'Lives Transformed',
       description: 'Individuals who have participated in our programs and experienced meaningful growth',
       color: 'text-blue-600'
     },
     {
       icon: Globe,
-      number: '50+',
+      number: 50,
+      suffix: '+',
       label: 'Countries Reached',
       description: 'Global presence spanning across continents, connecting diverse communities',
       color: 'text-green-600'
     },
     {
       icon: Award,
-      number: '25+',
+      number: 25,
+      suffix: '+',
       label: 'Awards & Recognition',
       description: 'International recognition for our innovative approaches and impact',
       color: 'text-purple-600'
     },
     {
       icon: TrendingUp,
-      number: '89%',
+      number: 89,
+      suffix: '%',
       label: 'Success Rate',
       description: 'Participants who achieved their personal and professional goals',
       color: 'text-orange-600'
     },
     {
       icon: Heart,
-      number: '500+',
+      number: 500,
+      suffix: '+',
       label: 'Community Partners',
       description: 'Organizations and institutions collaborating with us worldwide',
       color: 'text-pink-600'
     },
     {
       icon: Star,
-      number: '4.9/5',
+      number: 4.9,
+      suffix: '/5',
+      decimals: 1,
       label: 'Satisfaction Score',
       description: 'Average rating from participants across all our programs',
       color: 'text-yellow-600'
@@ -166,14 +175,23 @@ const Impact = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {impactStats.map((stat, index) => (
-              <div key={index} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow text-center">
+              <AnimatedCard key={index} animation="slideUp" delay={index * 150}>
+                <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow text-center">
                 <div className={`w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-6 ${stat.color}`}>
                   <stat.icon className="h-8 w-8" />
                 </div>
-                <div className="text-4xl font-bold text-gray-900 mb-2">{stat.number}</div>
+                <div className="text-4xl font-bold text-gray-900 mb-2">
+                  <CountUpNumber 
+                    end={stat.number} 
+                    suffix={stat.suffix || ''} 
+                    decimals={stat.decimals || 0}
+                    duration={2500}
+                  />
+                </div>
                 <div className="text-xl font-semibold text-gray-900 mb-3">{stat.label}</div>
                 <p className="text-gray-600 text-sm leading-relaxed">{stat.description}</p>
               </div>
+              </AnimatedCard>
             ))}
           </div>
         </div>
@@ -193,7 +211,8 @@ const Impact = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {programImpact.map((program, index) => (
-              <div key={index} className="bg-white p-8 rounded-xl shadow-lg">
+              <AnimatedCard key={index} animation="slideUp" delay={index * 200}>
+                <div className="bg-white p-8 rounded-xl shadow-lg">
                 <div className={`inline-block px-4 py-2 rounded-full text-sm font-semibold mb-4 ${program.color}`}>
                   {program.program}
                 </div>
@@ -212,6 +231,7 @@ const Impact = () => {
                   </div>
                 </div>
               </div>
+              </AnimatedCard>
             ))}
           </div>
         </div>
@@ -231,7 +251,8 @@ const Impact = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <AnimatedCard key={index} animation="slideUp" delay={index * 150}>
+                <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
                 <div className="flex items-center space-x-4 mb-6">
                   <img
                     src={testimonial.image}
@@ -255,6 +276,7 @@ const Impact = () => {
                   </p>
                 </div>
               </div>
+              </AnimatedCard>
             ))}
           </div>
         </div>
@@ -272,19 +294,27 @@ const Impact = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-5xl font-bold mb-2">100K+</div>
+              <div className="text-5xl font-bold mb-2">
+                <CountUpNumber end={100} suffix="K+" duration={3000} />
+              </div>
               <div className="text-green-100 text-lg">Lives to Transform</div>
             </div>
             <div className="text-center">
-              <div className="text-5xl font-bold mb-2">100</div>
+              <div className="text-5xl font-bold mb-2">
+                <CountUpNumber end={100} duration={3000} />
+              </div>
               <div className="text-green-100 text-lg">Countries to Reach</div>
             </div>
             <div className="text-center">
-              <div className="text-5xl font-bold mb-2">1M+</div>
+              <div className="text-5xl font-bold mb-2">
+                <CountUpNumber end={1} suffix="M+" duration={3000} />
+              </div>
               <div className="text-green-100 text-lg">Indirect Beneficiaries</div>
             </div>
             <div className="text-center">
-              <div className="text-5xl font-bold mb-2">50+</div>
+              <div className="text-5xl font-bold mb-2">
+                <CountUpNumber end={50} suffix="+" duration={3000} />
+              </div>
               <div className="text-green-100 text-lg">New Programs</div>
             </div>
           </div>

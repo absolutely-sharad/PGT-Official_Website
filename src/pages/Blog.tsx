@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Calendar, User, ArrowRight, Clock, Heart, MessageCircle } from 'lucide-react';
 import ProtectedAction from '../components/ProtectedAction';
+import AnimatedCard from '../components/AnimatedCard';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 import toast from 'react-hot-toast';
@@ -228,10 +230,13 @@ const Blog = () => {
                     </div>
                   </div>
                   
-                  <button className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-flex items-center w-fit">
+                  <Link 
+                    to={`/blog/${featuredPost.id}`}
+                    className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-flex items-center w-fit"
+                  >
                     Read Full Article
                     <ArrowRight className="ml-2 h-5 w-5" />
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -265,7 +270,8 @@ const Blog = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPosts.filter(post => !post.featured).map((post) => (
-              <article key={post.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <AnimatedCard key={post.id} animation="slideUp" delay={index * 100}>
+                <article className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                 <div className="relative h-48">
                   <img
                     src={post.image}
@@ -335,14 +341,18 @@ const Blog = () => {
                         </button>
                       </ProtectedAction>
                       
-                      <button className="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center">
+                      <Link 
+                        to={`/blog/${post.id}`}
+                        className="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center"
+                      >
                         Read More
                         <ArrowRight className="ml-1 h-4 w-4" />
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
               </article>
+              </AnimatedCard>
             ))}
           </div>
         </div>

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { supabase } from '../lib/supabase'
-import { User, Settings, FileText, Heart, Activity, Edit3, Save, X } from 'lucide-react'
+import { User, Settings, FileText, Heart, Activity, Edit3, Save, X, Camera } from 'lucide-react'
 import { Navigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
+import ImageUploadModal from '../components/ImageUploadModal'
 
 const Dashboard = () => {
   const { user, updateProfile } = useAuth()
@@ -13,11 +14,14 @@ const Dashboard = () => {
   const [likes, setLikes] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [editMode, setEditMode] = useState(false)
+  const [showImageModal, setShowImageModal] = useState(false)
+  const [profileImage, setProfileImage] = useState<string>('')
   const [editData, setEditData] = useState({
     full_name: '',
     bio: '',
     location: '',
-    website: ''
+    website: '',
+    avatar_url: ''
   })
 
   useEffect(() => {
@@ -41,8 +45,10 @@ const Dashboard = () => {
           full_name: profileData.full_name || '',
           bio: profileData.bio || '',
           location: profileData.location || '',
-          website: profileData.website || ''
+          website: profileData.website || '',
+          avatar_url: profileData.avatar_url || ''
         })
+        setProfileImage(profileData.avatar_url || '')
       }
 
       // Fetch applications
@@ -149,10 +155,29 @@ const Dashboard = () => {
               </div>
 
               <div className="text-center mb-6">
-                <div className="w-20 h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white text-2xl font-bold">
-                    {(profile?.full_name || user.email || '').charAt(0).toUpperCase()}
-                  </span>
+                <div className="relative inline-block mb-4">
+                  <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                    {profileImage ? (
+                      <img
+                        src={profileImage}
+                        alt="Profile"
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center">
+                        <span className="text-white text-2xl font-bold">
+                          {(profile?.full_name || user.email || '').charAt(0).toUpperCase()}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                  <button
+                    onClick={() => setShowImageModal(true)}
+                    className="absolute -bottom-1 -right-1 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors shadow-lg"
+                    title="Change profile photo"
+                  >
+                    <Camera className="h-4 w-4" />
+                  </button>
                 </div>
                 {editMode ? (
                   <input
@@ -325,6 +350,13 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+      
+      <ImageUploadModal
+        isOpen={showImageModal}
+        onClose={() => setShowImageModal(false)}
+        onImageSelect={handleImageUpload}
+        currentImage={profileImage}
+      />
     </div>
   )
 }

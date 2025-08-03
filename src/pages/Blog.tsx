@@ -269,7 +269,7 @@ const Blog = () => {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPosts.filter(post => !post.featured).map((post) => (
+            {filteredPosts.filter(post => !post.featured).map((post, index) => (
               <AnimatedCard key={post.id} animation="slideUp" delay={index * 100}>
                 <article className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                 <div className="relative h-48">

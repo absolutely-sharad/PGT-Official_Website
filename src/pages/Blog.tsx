@@ -272,11 +272,13 @@ const Blog = () => {
             {filteredPosts.filter(post => !post.featured).map((post, index) => (
               <AnimatedCard key={post.id} animation="slideUp" delay={index * 100}>
                 <article className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <article className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-300 group">
                 <div className="relative h-48">
                   <img
                     src={post.image}
                     alt={post.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    loading="lazy"
                   />
                   <div className="absolute top-4 left-4">
                     <span className="bg-white bg-opacity-90 text-gray-800 px-3 py-1 rounded-full text-xs font-medium">
@@ -286,7 +288,7 @@ const Blog = () => {
                 </div>
                 
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">
                     {post.title}
                   </h3>
                   
@@ -343,7 +345,7 @@ const Blog = () => {
                       
                       <Link 
                         to={`/blog/${post.id}`}
-                        className="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center"
+                        className="text-blue-600 font-medium hover:text-blue-800 hover:underline inline-flex items-center transition-all"
                       >
                         Read More
                         <ArrowRight className="ml-1 h-4 w-4" />

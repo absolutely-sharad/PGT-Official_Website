@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Play, X, Image, Calendar, MapPin } from 'lucide-react';
+import AnimatedCard from '../components/AnimatedCard';
 
 const Gallery = () => {
   const [selectedMedia, setSelectedMedia] = useState<any>(null);
@@ -144,7 +145,8 @@ const Gallery = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+      <AnimatedCard animation="fadeIn">
+        <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -156,6 +158,7 @@ const Gallery = () => {
           </div>
         </div>
       </section>
+      </AnimatedCard>
 
       {/* Filter Tabs */}
       <section className="py-12 bg-white sticky top-16 z-40 border-b">
@@ -183,16 +186,18 @@ const Gallery = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredItems.map((item, index) => (
+              <AnimatedCard key={index} animation="slideUp" delay={index * 100}>
               <div
                 key={index}
-                className="relative bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer group"
+                className="relative bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer group"
                 onClick={() => setSelectedMedia(item)}
               >
                 <div className="aspect-square relative overflow-hidden">
                   <img
                     src={item.thumbnail}
                     alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    loading="lazy"
                   />
                   
                   {/* Overlay */}
@@ -232,6 +237,7 @@ const Gallery = () => {
                   </div>
                 </div>
               </div>
+              </AnimatedCard>
             ))}
           </div>
         </div>

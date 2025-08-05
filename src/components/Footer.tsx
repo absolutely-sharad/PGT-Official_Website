@@ -35,8 +35,8 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">PGT</span>
+              <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-lg border border-gray-200">
+                <span className="text-blue-600 font-bold text-xl drop-shadow-sm">PGT</span>
               </div>
               <span className="text-xl font-bold">PGT Global Network</span>
             </div>

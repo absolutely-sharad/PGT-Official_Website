@@ -1,5 +1,7 @@
 import React from 'react';
 import { ArrowRight, Users, Target, Zap, Brain, GraduationCap } from 'lucide-react';
+import AnimatedCard from '../components/AnimatedCard';
+import ApplyButton from '../components/ApplyButton';
 
 const Programs = () => {
   const programs = [
@@ -98,7 +100,8 @@ const Programs = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+      <AnimatedCard animation="fadeIn">
+        <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -110,11 +113,13 @@ const Programs = () => {
           </div>
         </div>
       </section>
+      </AnimatedCard>
 
       {/* Programs Overview */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <AnimatedCard animation="slideUp">
+            <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Transformative Programs for Every Journey
             </h2>
@@ -122,9 +127,11 @@ const Programs = () => {
               From digital transformation to personal development, our programs are designed to meet diverse needs and create lasting impact.
             </p>
           </div>
+          </AnimatedCard>
 
           <div className="space-y-16">
             {programs.map((program, index) => (
+              <AnimatedCard key={program.id} animation={index % 2 === 0 ? 'slideLeft' : 'slideRight'} delay={index * 200}>
               <div key={program.id} className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 items-center`}>
                 <div className="flex-1">
                   <img
@@ -171,19 +178,21 @@ const Programs = () => {
                     </div>
                   </div>
                   
-                  <button className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-flex items-center">
+                  <ApplyButton className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-flex items-center">
                     Learn More
                     <ArrowRight className="ml-2 h-5 w-5" />
-                  </button>
+                  </ApplyButton>
                 </div>
               </div>
+              </AnimatedCard>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-green-600 to-blue-600 text-white">
+      <AnimatedCard animation="fadeIn">
+        <section className="py-20 bg-gradient-to-r from-green-600 to-blue-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to Join a Program?
@@ -192,16 +201,17 @@ const Programs = () => {
             Take the next step in your transformation journey. Our programs are designed to support you every step of the way.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center justify-center">
+            <ApplyButton className="bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center justify-center">
               Apply Now
               <ArrowRight className="ml-2 h-5 w-5" />
-            </button>
+            </ApplyButton>
             <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-colors">
               Schedule Consultation
             </button>
           </div>
         </div>
       </section>
+      </AnimatedCard>
     </div>
   );
 };

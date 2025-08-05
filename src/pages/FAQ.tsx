@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, Search, HelpCircle } from 'lucide-react';
+import AnimatedCard from '../components/AnimatedCard';
 
 const FAQ = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -126,7 +127,8 @@ const FAQ = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+      <AnimatedCard animation="fadeIn">
+        <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -138,6 +140,7 @@ const FAQ = () => {
           </div>
         </div>
       </section>
+      </AnimatedCard>
 
       {/* Search and Filter */}
       <section className="py-12 bg-white sticky top-16 z-40 border-b">
@@ -187,6 +190,7 @@ const FAQ = () => {
           ) : (
             <div className="space-y-4">
               {filteredFAQs.map((item) => (
+                <AnimatedCard key={item.id} animation="slideUp" delay={index * 100}>
                 <div key={item.id} className="bg-white border border-gray-200 rounded-lg shadow-sm">
                   <button
                     onClick={() => toggleItem(item.id)}
@@ -212,6 +216,7 @@ const FAQ = () => {
                     </div>
                   )}
                 </div>
+                </AnimatedCard>
               ))}
             </div>
           )}

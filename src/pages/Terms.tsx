@@ -1,5 +1,6 @@
 import React from 'react';
 import { FileText, Scale, Shield, AlertTriangle, Users, Globe } from 'lucide-react';
+import AnimatedCard from '../components/AnimatedCard';
 
 const Terms = () => {
   const sections = [
@@ -48,7 +49,8 @@ const Terms = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+      <AnimatedCard animation="fadeIn">
+        <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -60,6 +62,7 @@ const Terms = () => {
           </div>
         </div>
       </section>
+      </AnimatedCard>
 
       {/* Last Updated */}
       <section className="py-8 bg-gray-50">
@@ -94,7 +97,8 @@ const Terms = () => {
       {/* Key Sections Overview */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <AnimatedCard animation="slideUp">
+            <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Key Terms Overview
             </h2>
@@ -102,9 +106,11 @@ const Terms = () => {
               Understanding your rights and responsibilities when using our services
             </p>
           </div>
+          </AnimatedCard>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {sections.map((section, index) => (
+              <AnimatedCard key={index} animation="slideUp" delay={index * 200}>
               <div key={index} className="bg-white p-8 rounded-xl shadow-lg">
                 <div className="flex items-center mb-6">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
@@ -121,6 +127,7 @@ const Terms = () => {
                   ))}
                 </ul>
               </div>
+              </AnimatedCard>
             ))}
           </div>
         </div>

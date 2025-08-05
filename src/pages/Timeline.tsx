@@ -217,7 +217,6 @@ const Timeline = () => {
               <div className="text-green-100">Target Year</div>
             </div>
           </div>
-        </div>
       </section>
       </AnimatedCard>
     </div>

@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, User, LogOut } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import AuthModal from './AuthModal';
-import DarkModeToggle from './DarkModeToggle';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -81,7 +80,13 @@ const Navbar = () => {
               <div className={`bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center transition-all duration-300 ${
                 scrolled ? 'w-8 h-8' : 'w-10 h-10'
               }`}>
-                <span className="text-white font-bold text-xl">PGT</span>
+                <img 
+                  src="/PGT New Logo Transparent.png" 
+                  alt="PGT Logo" 
+                  className={`transition-all duration-300 ${
+                    scrolled ? 'w-6 h-6' : 'w-8 h-8'
+                  }`}
+                />
               </div>
               <span className={`font-bold text-gray-900 transition-all duration-300 ${
                 scrolled ? 'text-lg' : 'text-xl'
@@ -144,7 +149,6 @@ const Navbar = () => {
               </div>
 
               {/* Auth Section */}
-              <DarkModeToggle />
               {user ? (
                 <div className="relative">
                   <button

@@ -1,7 +1,5 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
-import AnimatedCard from '../components/AnimatedCard';
-import LastUpdate from '../components/LastUpdate';
 
 const Contact = () => {
   const contactInfo = [
@@ -69,8 +67,7 @@ const Contact = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <AnimatedCard animation="fadeIn">
-        <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -82,15 +79,12 @@ const Contact = () => {
           </div>
         </div>
       </section>
-      </AnimatedCard>
 
       {/* Contact Methods */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <LastUpdate />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {contactInfo.map((info, index) => (
-              <AnimatedCard key={index} animation="slideUp" delay={index * 150}>
               <div key={index} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
                   <info.icon className="h-8 w-8 text-blue-600" />
@@ -108,7 +102,6 @@ const Contact = () => {
                   </a>
                 )}
               </div>
-              </AnimatedCard>
             ))}
           </div>
         </div>

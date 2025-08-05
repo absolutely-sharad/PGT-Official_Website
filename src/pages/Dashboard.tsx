@@ -24,36 +24,9 @@ const Dashboard = () => {
     avatar_url: ''
   })
 
-  const handleImageUpload = async (file: File, previewUrl: string) => {
-    try {
-      // Convert file to base64 for storage
-      const reader = new FileReader()
-      reader.onload = async (e) => {
-        const base64String = e.target?.result as string
-        
-        // Update profile with new image
-        const updatedData = { ...editData, avatar_url: base64String }
-        await updateProfile(updatedData)
-        setProfileImage(base64String)
-        setEditData(updatedData)
-        
-        // Store in localStorage as backup
-        localStorage.setItem(`profile_image_${user!.id}`, base64String)
-      }
-      reader.readAsDataURL(file)
-    } catch (error) {
-      console.error('Error uploading image:', error)
-    }
-  }
-
   useEffect(() => {
     if (user) {
       fetchUserData()
-      // Load cached image if available
-      const cachedImage = localStorage.getItem(`profile_image_${user.id}`)
-      if (cachedImage) {
-        setProfileImage(cachedImage)
-      }
     }
   }, [user])
 
@@ -115,9 +88,8 @@ const Dashboard = () => {
 
   const handleSaveProfile = async () => {
     try {
-      const dataToSave = { ...editData, avatar_url: profileImage }
-      await updateProfile(dataToSave)
-      setProfile({ ...profile, ...dataToSave })
+      await updateProfile(editData)
+      setProfile({ ...profile, ...editData })
       setEditMode(false)
     } catch (error) {
       // Error handled in context

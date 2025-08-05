@@ -2,7 +2,6 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, User, ArrowLeft, Clock, Share2 } from 'lucide-react';
 import AnimatedCard from '../components/AnimatedCard';
-import ShareButton from '../components/ShareButton';
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -127,10 +126,10 @@ const BlogPost = () => {
               <div className="mt-8 pt-8 border-t border-gray-200">
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-semibold text-gray-900">Share this article</h3>
-                  <ShareButton 
-                    title={blogPost.title}
-                    text={`Check out this insightful article: ${blogPost.title}`}
-                  />
+                  <button className="flex items-center text-blue-600 hover:text-blue-800 font-medium">
+                    <Share2 className="h-4 w-4 mr-2" />
+                    Share
+                  </button>
                 </div>
               </div>
             </div>

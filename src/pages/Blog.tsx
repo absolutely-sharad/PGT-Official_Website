@@ -1,1 +1,12 @@
-{"code":"rate-limited","message":"You have hit the rate limit. Please upgrade to keep chatting.","providerLimitHit":false,"isRetryable":true}
+import React from "react";
+
+const Blog = () => {
+  return (
+    <section>
+      <h1>Welcome to the Blog</h1>
+      {/* Add blog content here */}
+    </section>
+  );
+};
+
+export default Blog;

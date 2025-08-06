@@ -53,37 +53,49 @@ const Home = () => {
 
   return (
     <div className="pt-16">
+      {/* Marquee / News Ticker */}
+      <div className="w-full bg-blue-100 py-2 px-4 text-sm text-blue-800 font-medium overflow-hidden whitespace-nowrap">
+        <div className="animate-marquee flex space-x-12">
+          <Link to="/blog" className="hover:underline">
+            📢 New Blog Posted — Read Now! Click here →
+          </Link>
+          <Link to="/careers" className="hover:underline">
+            🚀 Recruitment Drive Live — Apply Now! Click here →
+          </Link>
+        </div>
+      </div>
+
       {/* Hero Section */}
       <AnimatedCard animation="fadeIn">
         <section className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              Transforming Lives Through
-              <span className="block text-yellow-300">Purpose & Growth</span>
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-blue-100">
-              Empowering individuals and organizations worldwide through innovative programs,
-              sustainable growth, and purposeful transformation.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/programs"
-                className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center justify-center"
-              >
-                Explore Programs
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-              <Link
-                to="/about"
-                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors inline-flex items-center justify-center"
-              >
-                Learn More
-              </Link>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+            <div className="text-center">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                Transforming Lives Through
+                <span className="block text-yellow-300">Purpose & Growth</span>
+              </h1>
+              <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-blue-100">
+                Empowering individuals and organizations worldwide through innovative programs,
+                sustainable growth, and purposeful transformation.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link
+                  to="/programs"
+                  className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center justify-center"
+                >
+                  Explore Programs
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+                <Link
+                  to="/about"
+                  className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors inline-flex items-center justify-center"
+                >
+                  Learn More
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
       </AnimatedCard>
 
       {/* Core Values */}

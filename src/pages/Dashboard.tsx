@@ -25,14 +25,23 @@ const Dashboard = () => {
   })
 
   useEffect(() => {
-    if (user) {
+    if (user !== undefined && user !== null) {
+      console.log("User is available:", user)
       fetchUserData()
+    } else {
+      console.warn("User not found. Redirecting or retrying...")
     }
   }, [user])
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(false)
+    }, 8000)
+    return () => clearTimeout(timeout)
+  }, [])
+
   const fetchUserData = async () => {
     try {
-      // Fetch profile
       const { data: profileData } = await supabase
         .from('profiles')
         .select('*')
@@ -51,7 +60,6 @@ const Dashboard = () => {
         setProfileImage(profileData.avatar_url || '')
       }
 
-      // Fetch applications
       const { data: applicationsData } = await supabase
         .from('applications')
         .select('*')
@@ -60,7 +68,6 @@ const Dashboard = () => {
 
       setApplications(applicationsData || [])
 
-      // Fetch activities
       const { data: activitiesData } = await supabase
         .from('user_activities')
         .select('*')
@@ -70,7 +77,6 @@ const Dashboard = () => {
 
       setActivities(activitiesData || [])
 
-      // Fetch likes
       const { data: likesData } = await supabase
         .from('blog_likes')
         .select('*')
@@ -91,38 +97,32 @@ const Dashboard = () => {
       await updateProfile(editData)
       setProfile({ ...profile, ...editData })
       setEditMode(false)
-    } catch (error) {
-      // Error handled in context
-    }
+    } catch (error) {}
   }
 
   const handleImageUpload = async (file: File, previewUrl: string) => {
     try {
-      // Convert file to base64 for storage
       const reader = new FileReader();
       reader.onloadend = async () => {
         const base64String = reader.result as string;
-        
+
         try {
-          // Update local state immediately
           setProfileImage(base64String);
           setEditData(prev => ({ ...prev, avatar_url: base64String }));
-          
-          // Update the profile in the database
+
           const updatedProfile = { ...editData, avatar_url: base64String };
           await updateProfile(updatedProfile);
           setProfile({ ...profile, ...updatedProfile });
-          
+
           toast.success('Profile photo updated successfully!');
         } catch (error) {
           console.error('Error updating profile:', error);
           toast.error('Failed to update profile photo');
-          // Revert local state on error
           setProfileImage(profile?.avatar_url || '');
           setEditData(prev => ({ ...prev, avatar_url: profile?.avatar_url || '' }));
         }
       };
-      
+
       reader.readAsDataURL(file);
     } catch (error) {
       console.error('Error uploading image:', error)

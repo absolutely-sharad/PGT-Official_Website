@@ -53,70 +53,37 @@ const Home = () => {
 
   return (
     <div className="pt-16">
-      {/* Marquee / News Ticker */}
-      <div className="fixed top-0 left-0 w-full bg-blue-100 py-2 px-4 text-sm text-blue-800 font-medium overflow-hidden whitespace-nowrap z-50">
-        <marquee behavior="scroll" direction="left" scrollamount="5" onMouseOver={(e) => e.stop()} onMouseOut={(e) => e.start()}>
-          <span className="mx-4">
-            <Link to="/blog" className="hover:underline">
-              📢 New Blog Posted — Read Now! Click here →
-            </Link>
-          </span>
-          <span className="mx-4">
-            <Link to="/careers" className="hover:underline">
-              🚀 Recruitment Drive Live — Apply Now! Click here →
-            </Link>
-          </span>
-        </marquee>
-      </div>
-
       {/* Hero Section */}
       <AnimatedCard animation="fadeIn">
-        <section className="relative text-white">
-          {/* Animated Background */}
-          <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
-            <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 320">
-              <path
-                fill="url(#grad1)"
-                fillOpacity="1"
-                d="M0,192L60,165.3C120,139,240,85,360,101.3C480,117,600,203,720,234.7C840,267,960,245,1080,208C1200,171,1320,117,1380,90.7L1440,64L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
-              ></path>
-              <defs>
-                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" style={{ stopColor: '#3b82f6', stopOpacity: 1 }} />
-                  <stop offset="100%" style={{ stopColor: '#8b5cf6', stopOpacity: 1 }} />
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
-
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-            <div className="text-center">
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                Transforming Lives Through
-                <span className="block text-yellow-300">Purpose & Growth</span>
-              </h1>
-              <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-blue-100">
-                Empowering individuals and organizations worldwide through innovative programs,
-                sustainable growth, and purposeful transformation.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  to="/programs"
-                  className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center justify-center"
-                >
-                  Explore Programs
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-                <Link
-                  to="/about"
-                  className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors inline-flex items-center justify-center"
-                >
-                  Learn More
-                </Link>
-              </div>
+        <section className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+              Transforming Lives Through
+              <span className="block text-yellow-300">Purpose & Growth</span>
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-blue-100">
+              Empowering individuals and organizations worldwide through innovative programs,
+              sustainable growth, and purposeful transformation.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/programs"
+                className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center justify-center"
+              >
+                Explore Programs
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+              <Link
+                to="/about"
+                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors inline-flex items-center justify-center"
+              >
+                Learn More
+              </Link>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
       </AnimatedCard>
 
       {/* Core Values */}

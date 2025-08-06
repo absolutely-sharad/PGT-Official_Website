@@ -1,1 +1,12 @@
-{"code":"rate-limited","message":"You have hit the rate limit. Please upgrade to keep chatting.","providerLimitHit":false,"isRetryable":true}
+import React from "react";
+
+const Timeline = () => {
+  return (
+    <section>
+      <h2>Looking Ahead</h2>
+      {/* Your timeline content here */}
+    </section>
+  );
+};
+
+export default Timeline;

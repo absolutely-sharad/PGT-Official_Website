@@ -96,6 +96,28 @@ const Dashboard = () => {
     }
   }
 
+  const handleImageUpload = async (file: File, previewUrl: string) => {
+    try {
+      // For now, we'll use the preview URL (base64) and store it locally
+      // In a real app, you would upload to Supabase storage here
+      const imageUrl = previewUrl
+      
+      // Update local state immediately
+      setProfileImage(imageUrl)
+      setEditData(prev => ({ ...prev, avatar_url: imageUrl }))
+      
+      // Update the profile in the database
+      const updatedProfile = { ...editData, avatar_url: imageUrl }
+      await updateProfile(updatedProfile)
+      setProfile({ ...profile, ...updatedProfile })
+      
+      toast.success('Profile photo updated successfully!')
+    } catch (error) {
+      console.error('Error uploading image:', error)
+      toast.error('Failed to update profile photo')
+    }
+  }
+
   if (!user) {
     return <Navigate to="/" replace />
   }

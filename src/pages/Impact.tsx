@@ -285,38 +285,48 @@ const Impact = () => {
       {/* Future Goals */}
       <section className="py-20 bg-gradient-to-r from-green-600 to-blue-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Our 2030 Vision
-          </h2>
+          <AnimatedCard animation="fadeIn">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Our 2030 Vision
+            </h2>
+          </AnimatedCard>
           <p className="text-xl mb-12 max-w-3xl mx-auto text-green-100">
             Building on our success, we're committed to expanding our impact and reaching even more lives
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-5xl font-bold mb-2">
-                <CountUpNumber end={100} suffix="K+" duration={3000} />
+            <AnimatedCard animation="slideUp" delay={0}>
+              <div className="text-center">
+                <div className="text-5xl font-bold mb-2">
+                  <CountUpNumber end={100} suffix="K+" duration={3000} />
+                </div>
+                <div className="text-green-100 text-lg">Lives to Transform</div>
               </div>
-              <div className="text-green-100 text-lg">Lives to Transform</div>
-            </div>
-            <div className="text-center">
-              <div className="text-5xl font-bold mb-2">
-                <CountUpNumber end={100} duration={3000} />
+            </AnimatedCard>
+            <AnimatedCard animation="slideUp" delay={200}>
+              <div className="text-center">
+                <div className="text-5xl font-bold mb-2">
+                  <CountUpNumber end={100} duration={3000} />
+                </div>
+                <div className="text-green-100 text-lg">Countries to Reach</div>
               </div>
-              <div className="text-green-100 text-lg">Countries to Reach</div>
-            </div>
-            <div className="text-center">
-              <div className="text-5xl font-bold mb-2">
-                <CountUpNumber end={1} suffix="M+" duration={3000} />
+            </AnimatedCard>
+            <AnimatedCard animation="slideUp" delay={400}>
+              <div className="text-center">
+                <div className="text-5xl font-bold mb-2">
+                  <CountUpNumber end={1} suffix="M+" duration={3000} />
+                </div>
+                <div className="text-green-100 text-lg">Indirect Beneficiaries</div>
               </div>
-              <div className="text-green-100 text-lg">Indirect Beneficiaries</div>
-            </div>
-            <div className="text-center">
-              <div className="text-5xl font-bold mb-2">
-                <CountUpNumber end={50} suffix="+" duration={3000} />
+            </AnimatedCard>
+            <AnimatedCard animation="slideUp" delay={600}>
+              <div className="text-center">
+                <div className="text-5xl font-bold mb-2">
+                  <CountUpNumber end={50} suffix="+" duration={3000} />
+                </div>
+                <div className="text-green-100 text-lg">New Programs</div>
               </div>
-              <div className="text-green-100 text-lg">New Programs</div>
-            </div>
+            </AnimatedCard>
           </div>
         </div>
       </section>

@@ -1,10 +1,12 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Calendar, User, ArrowLeft, Clock, Share2 } from 'lucide-react';
+import { Calendar, User, ArrowLeft, Clock, Share2, Copy, Check } from 'lucide-react';
 import AnimatedCard from '../components/AnimatedCard';
 
 const BlogPost = () => {
   const { slug } = useParams();
+  const [shareDropdownOpen, setShareDropdownOpen] = React.useState(false);
+  const [copied, setCopied] = React.useState(false);
 
   // Mock blog post data - in a real app, this would come from an API or CMS
   const blogPost = {
@@ -43,6 +45,37 @@ const BlogPost = () => {
     category: 'Digital Transformation',
     image: 'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=1200',
     tags: ['Education', 'Technology', 'Digital Transformation', 'Innovation']
+  };
+
+  const handleShare = async (platform: string) => {
+    const url = window.location.href;
+    const title = blogPost.title;
+    const text = `Check out this insightful article: "${title}" by ${blogPost.author}`;
+    
+    switch (platform) {
+      case 'copy':
+        try {
+          await navigator.clipboard.writeText(url);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+          console.error('Failed to copy: ', err);
+        }
+        break;
+      case 'twitter':
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+        break;
+      case 'facebook':
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+        break;
+      case 'linkedin':
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+        break;
+      case 'whatsapp':
+        window.open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
+        break;
+    }
+    setShareDropdownOpen(false);
   };
 
   return (
@@ -126,10 +159,51 @@ const BlogPost = () => {
               <div className="mt-8 pt-8 border-t border-gray-200">
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-semibold text-gray-900">Share this article</h3>
-                  <button className="flex items-center text-blue-600 hover:text-blue-800 font-medium">
-                    <Share2 className="h-4 w-4 mr-2" />
-                    Share
-                  </button>
+                  <div className="relative">
+                    <button 
+                      onClick={() => setShareDropdownOpen(!shareDropdownOpen)}
+                      className="flex items-center text-blue-600 hover:text-blue-800 font-medium"
+                    >
+                      <Share2 className="h-4 w-4 mr-2" />
+                      Share
+                    </button>
+                    
+                    {shareDropdownOpen && (
+                      <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200 z-10">
+                        <button
+                          onClick={() => handleShare('copy')}
+                          className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center"
+                        >
+                          {copied ? <Check className="h-4 w-4 mr-2 text-green-600" /> : <Copy className="h-4 w-4 mr-2" />}
+                          {copied ? 'Copied!' : 'Copy Link'}
+                        </button>
+                        <button
+                          onClick={() => handleShare('twitter')}
+                          className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                        >
+                          Share on Twitter
+                        </button>
+                        <button
+                          onClick={() => handleShare('facebook')}
+                          className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                        >
+                          Share on Facebook
+                        </button>
+                        <button
+                          onClick={() => handleShare('linkedin')}
+                          className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                        >
+                          Share on LinkedIn
+                        </button>
+                        <button
+                          onClick={() => handleShare('whatsapp')}
+                          className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                        >
+                          Share on WhatsApp
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import AnimatedCard from '../components/AnimatedCard';
 
 const Contact = () => {
   const contactInfo = [
@@ -67,41 +68,45 @@ const Contact = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Get In Touch
-            </h1>
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-              We'd love to hear from you. Send us a message and we'll respond as soon as possible.
-            </p>
+      <AnimatedCard animation="fadeIn">
+        <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">
+                Get In Touch
+              </h1>
+              <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
+                We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </AnimatedCard>
 
       {/* Contact Methods */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {contactInfo.map((info, index) => (
-              <div key={index} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <info.icon className="h-8 w-8 text-blue-600" />
+              <AnimatedCard key={index} animation="slideUp" delay={index * 150}>
+                <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow text-center">
+                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <info.icon className="h-8 w-8 text-blue-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{info.title}</h3>
+                  <p className="text-lg font-semibold text-blue-600 mb-2">{info.details}</p>
+                  <p className="text-gray-600 text-sm mb-4">{info.description}</p>
+                  {info.action !== '#' && (
+                    <a
+                      href={info.action}
+                      className="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center"
+                    >
+                      Contact Now
+                      <Send className="ml-1 h-4 w-4" />
+                    </a>
+                  )}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{info.title}</h3>
-                <p className="text-lg font-semibold text-blue-600 mb-2">{info.details}</p>
-                <p className="text-gray-600 text-sm mb-4">{info.description}</p>
-                {info.action !== '#' && (
-                  <a
-                    href={info.action}
-                    className="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center"
-                  >
-                    Contact Now
-                    <Send className="ml-1 h-4 w-4" />
-                  </a>
-                )}
-              </div>
+              </AnimatedCard>
             ))}
           </div>
         </div>

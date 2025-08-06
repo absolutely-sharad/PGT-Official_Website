@@ -35,9 +35,14 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">PGT</span>
-              </div>
+              <img 
+                src="/PGT New Logo Transparent.png" 
+                alt="PGT Logo" 
+                className="w-10 h-10 filter brightness-0 invert"
+                style={{
+                  filter: 'brightness(0) invert(1) drop-shadow(0 1px 2px rgba(255,255,255,0.1))'
+                }}
+              />
               <span className="text-xl font-bold">PGT Global Network</span>
             </div>
             <p className="text-gray-400 text-sm">

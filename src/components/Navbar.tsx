@@ -77,17 +77,16 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
-              <div className={`bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center transition-all duration-300 ${
-                scrolled ? 'w-8 h-8' : 'w-10 h-10'
-              }`}>
-                <img 
-                  src="/PGT New Logo Transparent.png" 
-                  alt="PGT Logo" 
-                  className={`transition-all duration-300 ${
-                    scrolled ? 'w-6 h-6' : 'w-8 h-8'
-                  }`}
-                />
-              </div>
+              <img 
+                src="/PGT New Logo Transparent.png" 
+                alt="PGT Logo" 
+                className={`transition-all duration-300 filter drop-shadow-md ${
+                  scrolled ? 'w-8 h-8' : 'w-10 h-10'
+                }`}
+                style={{
+                  filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))'
+                }}
+              />
               <span className={`font-bold text-gray-900 transition-all duration-300 ${
                 scrolled ? 'text-lg' : 'text-xl'
               }`}>

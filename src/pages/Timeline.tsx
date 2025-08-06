@@ -1,5 +1,6 @@
 import React from 'react';
 import { Calendar, Award, Users, Globe, Zap, Target } from 'lucide-react';
+import AnimatedCard from '../components/AnimatedCard';
 
 const Timeline = () => {
   const timelineEvents = [
@@ -86,7 +87,8 @@ const Timeline = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+      <AnimatedCard animation="fadeIn">
+        <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -98,11 +100,13 @@ const Timeline = () => {
           </div>
         </div>
       </section>
+      </AnimatedCard>
 
       {/* Timeline */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <AnimatedCard animation="slideUp">
+            <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Timeline of Transformation
             </h2>
@@ -110,6 +114,7 @@ const Timeline = () => {
               Every milestone in our journey represents lives transformed and communities empowered
             </p>
           </div>
+          </AnimatedCard>
 
           <div className="relative">
             {/* Timeline Line */}
@@ -117,7 +122,8 @@ const Timeline = () => {
 
             <div className="space-y-12">
               {timelineEvents.map((event, index) => (
-                <div key={event.year} className={`flex flex-col lg:flex-row items-center ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8`}>
+                <AnimatedCard key={event.year} animation="slideUp" delay={index * 200}>
+                  <div className={`flex flex-col lg:flex-row items-center ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8`}>
                   {/* Content */}
                   <div className="flex-1 lg:max-w-md">
                     <div className={`bg-white p-8 rounded-xl shadow-lg ${index % 2 === 0 ? 'lg:mr-8' : 'lg:ml-8'}`}>
@@ -172,6 +178,7 @@ const Timeline = () => {
                   {/* Spacer for alternating layout */}
                   <div className="flex-1 lg:max-w-md hidden lg:block"></div>
                 </div>
+                </AnimatedCard>
               ))}
             </div>
           </div>
@@ -181,26 +188,36 @@ const Timeline = () => {
       {/* Future Vision */}
       <section className="py-20 bg-gradient-to-r from-green-600 to-blue-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Looking Ahead
-          </h2>
-          <p className="text-xl mb-8 max-w-3xl mx-auto text-green-100">
-            Our journey continues as we work towards reaching 100,000 lives across 100 countries by 2030.
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="text-center">
-              <div className="text-4xl font-bold mb-2">100K+</div>
-              <div className="text-green-100">Lives to Transform</div>
+          <AnimatedCard animation="fadeIn">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Looking Ahead
+            </h2>
+          </AnimatedCard>
+            </AnimatedCard>
+            <AnimatedCard animation="slideUp" delay={200}>
+              <div className="text-center">
+                <div className="text-4xl font-bold mb-2">
+                  <CountUpNumber end={100} duration={3000} />
+                </div>
+                <div className="text-green-100 text-lg">Countries to Reach</div>
+            <AnimatedCard animation="slideUp" delay={0}>
+            </AnimatedCard>
+            <AnimatedCard animation="slideUp" delay={400}>
+              <div className="text-center">
+                <div className="text-4xl font-bold mb-2">
+                  <CountUpNumber end={1} suffix="M+" duration={3000} />
+                </div>
+                <div className="text-green-100 text-lg">Indirect Beneficiaries</div>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold mb-2">100</div>
-              <div className="text-green-100">Countries to Reach</div>
-            </div>
-            <div className="text-center">
+            </AnimatedCard>
+            <AnimatedCard animation="slideUp" delay={600}>
+              <div className="text-center">
+                <div className="text-4xl font-bold mb-2">
+                  <CountUpNumber end={50} suffix="+" duration={3000} />
+                </div>
+                <div className="text-green-100 text-lg">New Programs</div>
               <div className="text-4xl font-bold mb-2">2030</div>
-              <div className="text-green-100">Target Year</div>
-            </div>
+            </AnimatedCard>
           </div>
         </div>
       </section>

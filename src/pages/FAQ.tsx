@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, Search, HelpCircle } from 'lucide-react';
+import AnimatedCard from '../components/AnimatedCard';
 
 const FAQ = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -126,7 +127,8 @@ const FAQ = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+      <AnimatedCard animation="fadeIn">
+        <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -138,12 +140,14 @@ const FAQ = () => {
           </div>
         </div>
       </section>
+      </AnimatedCard>
 
       {/* Search and Filter */}
       <section className="py-12 bg-white sticky top-16 z-40 border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Search Bar */}
-          <div className="max-w-2xl mx-auto mb-8">
+          <AnimatedCard animation="slideUp">
+            <div className="max-w-2xl mx-auto mb-8">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
@@ -155,9 +159,11 @@ const FAQ = () => {
               />
             </div>
           </div>
+          </AnimatedCard>
 
           {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-2">
+          <AnimatedCard animation="slideUp" delay={200}>
+            <div className="flex flex-wrap justify-center gap-2">
             {categories.map((category) => (
               <button
                 key={category.id}
@@ -172,6 +178,7 @@ const FAQ = () => {
               </button>
             ))}
           </div>
+          </AnimatedCard>
         </div>
       </section>
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Shield, Eye, Lock, Users, Globe, FileText } from 'lucide-react';
+import AnimatedCard from '../components/AnimatedCard';
 
 const Privacy = () => {
   const sections = [
@@ -48,7 +49,8 @@ const Privacy = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+      <AnimatedCard animation="fadeIn">
+        <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -60,22 +62,26 @@ const Privacy = () => {
           </div>
         </div>
       </section>
+      </AnimatedCard>
 
       {/* Last Updated */}
       <section className="py-8 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+          <AnimatedCard animation="slideUp">
+            <div className="text-center">
             <p className="text-gray-600">
               <strong>Last Updated:</strong> January 15, 2025
             </p>
           </div>
+          </AnimatedCard>
         </div>
       </section>
 
       {/* Introduction */}
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="prose prose-lg max-w-none">
+          <AnimatedCard animation="slideUp">
+            <div className="prose prose-lg max-w-none">
             <p className="text-xl text-gray-700 leading-relaxed mb-8">
               At PGT Global Network, we are committed to protecting your privacy and ensuring the security 
               of your personal information. This Privacy Policy explains how we collect, use, disclose, and 
@@ -88,6 +94,7 @@ const Privacy = () => {
               this policy. We encourage you to read this policy carefully and contact us if you have any questions.
             </p>
           </div>
+          </AnimatedCard>
         </div>
       </section>
 

@@ -12,9 +12,9 @@ const Careers = () => {
   const handleApply = async (positionTitle: string, positionType: 'job' | 'internship') => {
     if (!user) return;
 
-    // Redirect to Google Form for authenticated users
-    const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScuNgMbLFhWx-yLSNK-b0JnMeWNdREAYTVi8owvWrxNgXwmRw/viewform';
-    window.open(formUrl, '_blank');
+    // Show "not recruiting" message instead of redirecting
+    toast.error('We are not recruiting yet. Stay in touch!');
+    return;
 
     try {
       const { error } = await supabase
@@ -273,7 +273,8 @@ const Careers = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+      <AnimatedCard animation="fadeIn">
+        <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -285,11 +286,13 @@ const Careers = () => {
           </div>
         </div>
       </section>
+      </AnimatedCard>
 
       {/* Why Join Us */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <AnimatedCard animation="slideUp">
+            <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Why Work With Us?
             </h2>
@@ -297,6 +300,7 @@ const Careers = () => {
               Join a team that's passionate about creating positive change and building a better future
             </p>
           </div>
+          </AnimatedCard>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {benefits.map((benefit, index) => (

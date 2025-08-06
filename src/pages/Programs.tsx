@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, Users, Target, Zap, Brain, GraduationCap } from 'lucide-react';
+import AnimatedCard from '../components/AnimatedCard';
 
 const Programs = () => {
   const programs = [
@@ -98,7 +99,8 @@ const Programs = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+      <AnimatedCard animation="fadeIn">
+        <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -110,11 +112,13 @@ const Programs = () => {
           </div>
         </div>
       </section>
+      </AnimatedCard>
 
       {/* Programs Overview */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <AnimatedCard animation="slideUp">
+            <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Transformative Programs for Every Journey
             </h2>
@@ -122,10 +126,12 @@ const Programs = () => {
               From digital transformation to personal development, our programs are designed to meet diverse needs and create lasting impact.
             </p>
           </div>
+          </AnimatedCard>
 
           <div className="space-y-16">
             {programs.map((program, index) => (
-              <div key={program.id} className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 items-center`}>
+              <AnimatedCard key={program.id} animation="slideUp" delay={index * 200}>
+                <div className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 items-center`}>
                 <div className="flex-1">
                   <img
                     src={program.image}
@@ -177,6 +183,7 @@ const Programs = () => {
                   </button>
                 </div>
               </div>
+              </AnimatedCard>
             ))}
           </div>
         </div>

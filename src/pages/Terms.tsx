@@ -1,5 +1,6 @@
 import React from 'react';
 import { FileText, Scale, Shield, AlertTriangle, Users, Globe } from 'lucide-react';
+import AnimatedCard from '../components/AnimatedCard';
 
 const Terms = () => {
   const sections = [
@@ -48,7 +49,8 @@ const Terms = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+      <AnimatedCard animation="fadeIn">
+        <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -60,15 +62,18 @@ const Terms = () => {
           </div>
         </div>
       </section>
+      </AnimatedCard>
 
       {/* Last Updated */}
       <section className="py-8 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+          <AnimatedCard animation="slideUp">
+            <div className="text-center">
             <p className="text-gray-600">
               <strong>Last Updated:</strong> January 15, 2025 | <strong>Effective Date:</strong> January 15, 2025
             </p>
           </div>
+          </AnimatedCard>
         </div>
       </section>
 

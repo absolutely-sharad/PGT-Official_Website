@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Target, TrendingUp, Zap, Users, Globe, Award } from 'lucide-react';
 import CountUpNumber from '../components/CountUpNumber';
 import AnimatedCard from '../components/AnimatedCard';
+import HeroBackground from '../components/HeroBackground';
 
 const Home = () => {
   const coreValues = [
@@ -55,9 +56,10 @@ const Home = () => {
     <div className="pt-16">
       {/* Hero Section */}
       <AnimatedCard animation="fadeIn">
-        <section className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 text-white">
+        <section className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 text-white overflow-hidden">
+        <HeroBackground />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <div className="text-center">
+          <div className="text-center relative z-10">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
               Transforming Lives Through
               <span className="block text-yellow-300">Purpose & Growth</span>

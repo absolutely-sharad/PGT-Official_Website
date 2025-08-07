@@ -178,7 +178,12 @@ const Programs = () => {
                   </div>
                   
                   <button className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-flex items-center">
-                    Learn More
+                    <Link
+                      to={`/programs/${program.id}`}
+                      className="flex items-center"
+                    >
+                      Learn More
+                    </Link>
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </button>
                 </div>

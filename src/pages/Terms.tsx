@@ -110,7 +110,8 @@ const Terms = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {sections.map((section, index) => (
-              <div key={index} className="bg-white p-8 rounded-xl shadow-lg">
+              <AnimatedCard key={index} animation="slideUp" delay={index * 150}>
+                <div className="bg-white p-8 rounded-xl shadow-lg">
                 <div className="flex items-center mb-6">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
                     <section.icon className="h-6 w-6 text-blue-600" />
@@ -126,6 +127,7 @@ const Terms = () => {
                   ))}
                 </ul>
               </div>
+              </AnimatedCard>
             ))}
           </div>
         </div>

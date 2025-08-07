@@ -143,9 +143,11 @@ const Blog: React.FC = () => {
             <div className="relative">
               <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <select
-                value={selectedCategory}
+              <AnimatedCard
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="pl-10 pr-8 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white min-w-[150px]"
+                animation="slideUp"
+                delay={index * 100}
+                className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
               >
                 {categories.map((category) => (
                   <option key={category} value={category}>
@@ -177,7 +179,7 @@ const Blog: React.FC = () => {
                     {post.category}
                   </span>
                 </div>
-              </div>
+              </AnimatedCard>
 
               <div className="p-6">
                 <div className="flex items-center text-gray-500 text-sm mb-3">

@@ -62,10 +62,14 @@ const Navbar = () => {
     { name: 'Terms & Conditions', path: '/terms' },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => {
+    if (path === location.pathname) return true;
+    // Check if current path is in moreItems
+    return moreItems.some(item => item.path === location.pathname && item.path === path);
+  };
 
   return (
-    <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+    <nav className={`fixed w-full top-8 z-50 transition-all duration-300 ${
       scrolled 
         ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100' 
         : 'bg-white shadow-lg'
@@ -137,7 +141,7 @@ const Navbar = () => {
                       <Link
                         key={item.name}
                         to={item.path}
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                        className={`block px-4 py-2 text-sm hover:bg-gray-50 ${isActive(item.path) ? 'text-blue-600 bg-blue-50' : 'text-gray-700'}`}
                         onClick={() => setDropdownOpen(false)}
                       >
                         {item.name}
@@ -233,7 +237,7 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 to={item.path}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-all duration-200"
+                className={`block px-3 py-2 rounded-md text-base font-medium hover:text-blue-600 hover:bg-gray-50 transition-all duration-200 ${isActive(item.path) ? 'text-blue-600 bg-blue-50' : 'text-gray-700'}`}
                 onClick={() => setIsOpen(false)}
               >
                 {item.name}

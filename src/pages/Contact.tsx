@@ -90,6 +90,7 @@ const Contact = () => {
             {contactInfo.map((info, index) => (
               <AnimatedCard key={index} animation="slideUp" delay={index * 150}>
                 <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow text-center">
                   <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
                     <info.icon className="h-8 w-8 text-blue-600" />
                   </div>
@@ -107,6 +108,7 @@ const Contact = () => {
                   )}
                 </div>
               </AnimatedCard>
+              </AnimatedCard>
             ))}
           </div>
         </div>
@@ -117,7 +119,8 @@ const Contact = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Form */}
-            <div className="bg-white p-8 rounded-xl shadow-lg">
+            <AnimatedCard animation="slideLeft">
+              <div className="bg-white p-8 rounded-xl shadow-lg">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
               <p className="text-gray-600 mb-8">
                 Fill out the form below and we'll get back to you within 24 hours.
@@ -146,9 +149,11 @@ const Contact = () => {
                 </p>
               </div>
             </div>
+            </AnimatedCard>
 
             {/* Contact Information */}
-            <div>
+            <AnimatedCard animation="slideRight">
+              <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Contact Information</h2>
               <p className="text-gray-600 mb-8">
                 We're here to help and answer any questions you might have. 
@@ -212,6 +217,7 @@ const Contact = () => {
                 </ul>
               </div>
             </div>
+            </AnimatedCard>
           </div>
         </div>
       </section>
@@ -219,7 +225,8 @@ const Contact = () => {
       {/* Global Offices */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <AnimatedCard animation="slideUp">
+            <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Our Global Offices
             </h2>
@@ -227,10 +234,12 @@ const Contact = () => {
               With offices across four continents, we're always close to our communities
             </p>
           </div>
+          </AnimatedCard>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {offices.map((office, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <AnimatedCard key={index} animation="slideUp" delay={index * 150}>
+                <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
                 <h3 className="text-lg font-bold text-gray-900 mb-2">{office.region}</h3>
                 <h4 className="text-blue-600 font-semibold mb-4">{office.city}</h4>
                 
@@ -255,6 +264,7 @@ const Contact = () => {
                   </div>
                 </div>
               </div>
+              </AnimatedCard>
             ))}
           </div>
         </div>

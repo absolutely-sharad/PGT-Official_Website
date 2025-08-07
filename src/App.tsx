@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './contexts/AuthContext';
 import { useScrollToTop } from './hooks/useScrollToTop';
+import { usePageLoading } from './hooks/usePageLoading';
+import AnnouncementBar from './components/AnnouncementBar';
+import AnimatedBackground from './components/AnimatedBackground';
+import LoadingSpinner from './components/LoadingSpinner';
 import Navbar from './components/Navbar';
 import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
@@ -15,6 +19,7 @@ import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Careers from './pages/Careers';
 import Contact from './pages/Contact';
+import ProgramDetail from './pages/ProgramDetail';
 import FAQ from './pages/FAQ';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
@@ -23,9 +28,12 @@ import Footer from './components/Footer';
 
 const AppContent = () => {
   useScrollToTop();
+  const loading = usePageLoading();
   
   return (
     <>
+      {loading && <LoadingSpinner />}
+      <AnnouncementBar />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -33,6 +41,7 @@ const AppContent = () => {
         <Route path="/programs" element={<Programs />} />
         <Route path="/timeline" element={<Timeline />} />
         <Route path="/impact" element={<Impact />} />
+        <Route path="/programs/:programId" element={<ProgramDetail />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
@@ -54,6 +63,7 @@ function App() {
   return (
     <AuthProvider>
       <Router>
+        <AnimatedBackground />
         <div className="min-h-screen bg-white">
           <AppContent />
         </div>

@@ -52,24 +52,7 @@ const Home = () => {
   ];
 
   return (
-    <div className="pt-20">
-      {/* 🔔 Announcement Bar */}
-      <div className="w-full bg-blue-50 text-blue-800 font-medium text-sm py-2 px-4 fixed top-0 z-50 overflow-hidden whitespace-nowrap shadow-sm">
-        <marquee
-          behavior="scroll"
-          direction="left"
-          scrollAmount="5"
-          onMouseOver={(e) => e.target.stop()}
-          onMouseOut={(e) => e.target.start()}
-        >
-          <Link to="/blog" className="mr-10 hover:underline">
-            📢 New Blog Posted — Read Now! Click here →
-          </Link>
-          <Link to="/careers" className="hover:underline">
-            🚀 Recruitment Drive Live — Apply Now! Click here →
-          </Link>
-        </marquee>
-      </div>
+    
 
       {/* Hero Section */}
       <AnimatedCard animation="fadeIn">

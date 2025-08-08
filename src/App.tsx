@@ -33,7 +33,6 @@ const AppContent = () => {
   return (
     <>
       {loading && <LoadingSpinner />}
-      <AnnouncementBar />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

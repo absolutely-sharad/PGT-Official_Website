@@ -2,7 +2,7 @@ import React from 'react';
 
 const AnnouncementBar = () => {
   return (
-    <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2 overflow-hidden relative">
+    <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2 overflow-hidden relative fixed top-0 w-full z-40">
       <div className="flex">
         {/* Desktop version - centered */}
         <div className="hidden md:flex w-full justify-center items-center">

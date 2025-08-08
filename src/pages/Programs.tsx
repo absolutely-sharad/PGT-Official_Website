@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Users, Target, Zap, Brain, GraduationCap } from 'lucide-react';
 import AnimatedCard from '../components/AnimatedCard';
 

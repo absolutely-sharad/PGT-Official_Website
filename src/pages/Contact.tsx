@@ -90,7 +90,6 @@ const Contact = () => {
             {contactInfo.map((info, index) => (
               <AnimatedCard key={index} animation="slideUp" delay={index * 150}>
                 <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow text-center">
-                <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow text-center">
                   <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
                     <info.icon className="h-8 w-8 text-blue-600" />
                   </div>
@@ -107,7 +106,6 @@ const Contact = () => {
                     </a>
                   )}
                 </div>
-              </AnimatedCard>
               </AnimatedCard>
             ))}
           </div>

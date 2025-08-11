@@ -54,38 +54,63 @@ const Home = () => {
 
   return (
     <div className="pt-16">
+      {/* Announcement Bar */}
+      <div className="bg-blue-100 text-blue-800 py-2 overflow-hidden whitespace-nowrap border-b border-blue-200">
+        <div className="flex space-x-12 animate-marquee hover:[animation-play-state:paused]">
+          <Link to="/blog" className="hover:underline">
+            📢 New Blog Posted — Read Now! Click here →
+          </Link>
+          <Link to="/careers" className="hover:underline">
+            🚀 Recruitment Drive Live — Apply Now! Click here →
+          </Link>
+        </div>
+      </div>
+
+      <style>
+        {`
+          @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+          }
+          .animate-marquee {
+            display: inline-flex;
+            animation: marquee 12s linear infinite;
+          }
+        `}
+      </style>
+
       {/* Hero Section */}
       <AnimatedCard animation="fadeIn">
         <section className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 text-white overflow-hidden">
-        <HeroBackground />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <div className="text-center relative z-10">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              Transforming Lives Through
-              <span className="block text-yellow-300">Purpose & Growth</span>
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-blue-100">
-              Empowering individuals and organizations worldwide through innovative programs,
-              sustainable growth, and purposeful transformation.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/programs"
-                className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center justify-center"
-              >
-                Explore Programs
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-              <Link
-                to="/about"
-                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors inline-flex items-center justify-center"
-              >
-                Learn More
-              </Link>
+          <HeroBackground />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+            <div className="text-center relative z-10">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                Transforming Lives Through
+                <span className="block text-yellow-300">Purpose & Growth</span>
+              </h1>
+              <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-blue-100">
+                Empowering individuals and organizations worldwide through innovative programs,
+                sustainable growth, and purposeful transformation.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link
+                  to="/programs"
+                  className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center justify-center"
+                >
+                  Explore Programs
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+                <Link
+                  to="/about"
+                  className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors inline-flex items-center justify-center"
+                >
+                  Learn More
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
       </AnimatedCard>
 
       {/* Core Values */}
@@ -104,12 +129,12 @@ const Home = () => {
             {coreValues.map((value, index) => (
               <AnimatedCard key={index} animation="slideUp" delay={index * 200}>
                 <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                <div className={`w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-6 ${value.color}`}>
-                  <value.icon className="h-8 w-8" />
+                  <div className={`w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-6 ${value.color}`}>
+                    <value.icon className="h-8 w-8" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{value.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{value.description}</p>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">{value.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{value.description}</p>
-              </div>
               </AnimatedCard>
             ))}
           </div>
@@ -132,18 +157,18 @@ const Home = () => {
             {impactStats.map((stat, index) => (
               <AnimatedCard key={index} animation="zoomIn" delay={index * 150}>
                 <div className="text-center">
-                <div className="w-16 h-16 mx-auto bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
-                  <stat.icon className="h-8 w-8 text-white" />
+                  <div className="w-16 h-16 mx-auto bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+                    <stat.icon className="h-8 w-8 text-white" />
+                  </div>
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-2">
+                    <CountUpNumber 
+                      end={stat.number} 
+                      suffix={stat.suffix || ''} 
+                      duration={2500}
+                    />
+                  </div>
+                  <div className="text-blue-100 font-medium">{stat.label}</div>
                 </div>
-                <div className="text-3xl md:text-4xl font-bold text-white mb-2">
-                  <CountUpNumber 
-                    end={stat.number} 
-                    suffix={stat.suffix || ''} 
-                    duration={2500}
-                  />
-                </div>
-                <div className="text-blue-100 font-medium">{stat.label}</div>
-              </div>
               </AnimatedCard>
             ))}
           </div>
@@ -166,23 +191,23 @@ const Home = () => {
             {programs.map((program, index) => (
               <AnimatedCard key={index} animation="slideUp" delay={index * 200}>
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                <img
-                  src={program.image}
-                  alt={program.name}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{program.name}</h3>
-                  <p className="text-gray-600 mb-4">{program.description}</p>
-                  <Link
-                    to="/programs"
-                    className="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center"
-                  >
-                    Learn More
-                    <ArrowRight className="ml-1 h-4 w-4" />
-                  </Link>
+                  <img
+                    src={program.image}
+                    alt={program.name}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">{program.name}</h3>
+                    <p className="text-gray-600 mb-4">{program.description}</p>
+                    <Link
+                      to="/programs"
+                      className="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center"
+                    >
+                      Learn More
+                      <ArrowRight className="ml-1 h-4 w-4" />
+                    </Link>
+                  </div>
                 </div>
-              </div>
               </AnimatedCard>
             ))}
           </div>

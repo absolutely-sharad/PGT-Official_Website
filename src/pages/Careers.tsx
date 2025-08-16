@@ -52,7 +52,6 @@ const Careers = () => {
   const handleApply = async (positionTitle, positionType) => {
     if (!user) return;
     
-    // Log activity before redirecting
     try {
       await supabase
         .from('user_activities')
@@ -70,7 +69,6 @@ const Careers = () => {
       toast.error('Error logging activity. Redirecting anyway...');
     }
 
-    // Redirect to the official Google Form
     window.open('https://docs.google.com/forms/d/e/1FAIpQLScuNgMbLFhWx-yLSNK-b0JnMeWNdREAYTVi8owvWrxNgXwmRw/viewform', '_blank');
   };
 

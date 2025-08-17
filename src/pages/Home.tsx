@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Target, TrendingUp, Zap, Users, Globe, Award } from 'lucide-react';
 import CountUpNumber from '../components/CountUpNumber';
 import AnimatedCard from '../components/AnimatedCard';
 import HeroBackground from '../components/HeroBackground';
+import LoadingSpinner from '../components/LoadingSpinner'; // Assuming you have a LoadingSpinner component
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // This simulates a page load. In a real application, you would
+    // check if all data has been fetched before setting isLoading to false.
+    // We use a timeout here to ensure the loading animation is visible.
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000); // 1-second delay for a smooth transition
+
+    // Cleanup the timer to prevent memory leaks
+    return () => clearTimeout(timer);
+  }, []);
+
   const coreValues = [
     {
       icon: Target,
@@ -51,6 +66,14 @@ const Home = () => {
       image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600'
     }
   ];
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <LoadingSpinner />
+      </div>
+    );
+  }
 
   return (
     <div className="pt-16">

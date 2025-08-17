@@ -1,24 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Target, TrendingUp, Zap, Users, Globe, Award } from 'lucide-react';
 import CountUpNumber from '../components/CountUpNumber';
 import AnimatedCard from '../components/AnimatedCard';
 import HeroBackground from '../components/HeroBackground';
-import LoadingSpinner from '../components/LoadingSpinner'; // Assuming you have a LoadingSpinner component
+import InteractiveBackground from '../components/InteractiveBackground';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // This simulates a page load. In a real application, you would
-    // check if all data has been fetched before setting isLoading to false.
-    // We use a timeout here to ensure the loading animation is visible.
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000); // 1-second delay for a smooth transition
-
-    // Cleanup the timer to prevent memory leaks
-    return () => clearTimeout(timer);
+    // We use a simple component mount check to hide the loader after the initial render
+    setIsLoading(false);
   }, []);
 
   const coreValues = [
@@ -70,7 +63,8 @@ const Home = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <LoadingSpinner />
+        {/* You will need to create a simple CSS spinner or use an existing one */}
+        <div>Loading...</div>
       </div>
     );
   }
@@ -137,16 +131,21 @@ const Home = () => {
       </AnimatedCard>
 
       {/* Core Values */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our Core Values
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Three fundamental principles that guide everything we do
-            </p>
-          </div>
+      <section className="relative py-20 bg-gray-50">
+        <div className="absolute inset-0 z-0">
+          <InteractiveBackground />
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedCard animation="slideUp">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Our Core Values
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Three fundamental principles that guide everything we do
+              </p>
+            </div>
+          </AnimatedCard>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {coreValues.map((value, index) => (
@@ -167,14 +166,16 @@ const Home = () => {
       {/* Impact Stats */}
       <section className="py-20 bg-blue-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Our Global Impact
-            </h2>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-              Six years of dedication, innovation, and transformation
-            </p>
-          </div>
+          <AnimatedCard animation="slideUp">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Our Global Impact
+              </h2>
+              <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+                Six years of dedication, innovation, and transformation
+              </p>
+            </div>
+          </AnimatedCard>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {impactStats.map((stat, index) => (
@@ -199,16 +200,21 @@ const Home = () => {
       </section>
 
       {/* Programs Preview */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our Programs
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Innovative initiatives designed to create lasting impact
-            </p>
-          </div>
+      <section className="py-20 relative">
+        <div className="absolute inset-0 z-0">
+          <InteractiveBackground />
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedCard animation="slideUp">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Our Programs
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Innovative initiatives designed to create lasting impact
+              </p>
+            </div>
+          </AnimatedCard>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {programs.map((program, index) => (
@@ -250,12 +256,14 @@ const Home = () => {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-purple-600 to-blue-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to Transform Your Future?
-          </h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto text-purple-100">
-            Join thousands of individuals and organizations who have experienced growth through our programs.
-          </p>
+          <AnimatedCard animation="slideUp">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Ready to Transform Your Future?
+            </h2>
+            <p className="text-xl mb-8 max-w-2xl mx-auto text-purple-100">
+              Join thousands of individuals and organizations who have experienced growth through our programs.
+            </p>
+          </AnimatedCard>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/careers"

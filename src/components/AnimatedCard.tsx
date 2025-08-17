@@ -38,7 +38,7 @@ const AnimatedCard = ({ children, animation = 'slideUp', delay = 0 }) => {
   const visibleClasses = {
     slideUp: 'transform translate-y-0 opacity-100',
     fadeIn: 'opacity-100',
-    zoomIn: 'transform scale-100 opacity-100',
+    zoomIn: 'transform scale-90 opacity-100',
   };
 
   const combinedClasses = `${animationClasses[animation]} ${isVisible ? visibleClasses[animation] : ''}`;

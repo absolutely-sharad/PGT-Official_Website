@@ -1,41 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Target, TrendingUp, Zap, Users, Globe, Award } from 'lucide-react';
 import CountUpNumber from '../components/CountUpNumber';
 import HeroBackground from '../components/HeroBackground';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-
-const sectionVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 20
-    }
-  }
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut"
-    }
-  }
-};
 
 const Home = () => {
-  const [ref1, inView1] = useInView({ triggerOnce: true, threshold: 0.1 });
-  const [ref2, inView2] = useInView({ triggerOnce: true, threshold: 0.1 });
-  const [ref3, inView3] = useInView({ triggerOnce: true, threshold: 0.1 });
-  const [ref4, inView4] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [isVisible, setIsVisible] = useState({});
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('.animate-on-scroll');
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          setIsVisible(prev => ({ ...prev, [section.id]: true }));
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Trigger on mount to check initial visibility
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const coreValues = [
     {
@@ -83,6 +70,13 @@ const Home = () => {
     }
   ];
 
+  const getAnimationClass = (id, animationType) => {
+    if (isVisible[id]) {
+      return animationType;
+    }
+    return 'opacity-0';
+  };
+
   return (
     <div className="pt-16">
       {/* Announcement Bar */}
@@ -107,15 +101,26 @@ const Home = () => {
             display: inline-flex;
             animation: marquee 12s linear infinite;
           }
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+          }
+          .fade-in-100 { animation-delay: 100ms; }
+          .fade-in-200 { animation-delay: 200ms; }
+          .fade-in-300 { animation-delay: 300ms; }
+          .fade-in-400 { animation-delay: 400ms; }
+          .fade-in-500 { animation-delay: 500ms; }
+          .fade-in-600 { animation-delay: 600ms; }
         `}
       </style>
 
       {/* Hero Section */}
-      <motion.section 
-        className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 text-white overflow-hidden"
-        initial="hidden"
-        animate="visible"
-        variants={sectionVariants}
+      <section 
+        id="hero" 
+        className={`relative bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 text-white overflow-hidden animate-on-scroll ${getAnimationClass('hero', 'fade-in')}`}
       >
         <HeroBackground />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
@@ -145,34 +150,26 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Core Values */}
-      <motion.section 
-        className="py-20 bg-gray-50"
-        ref={ref1}
-        initial="hidden"
-        animate={inView1 ? "visible" : "hidden"}
-        variants={sectionVariants}
-      >
+      <section id="core-values" className={`py-20 bg-gray-50 animate-on-scroll ${getAnimationClass('core-values', 'fade-in')}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className={`text-3xl md:text-4xl font-bold text-gray-900 mb-4 ${getAnimationClass('core-values-header', 'fade-in')}`}>
               Our Core Values
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className={`text-xl text-gray-600 max-w-3xl mx-auto ${getAnimationClass('core-values-subheader', 'fade-in fade-in-200')}`}>
               Three fundamental principles that guide everything we do
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {coreValues.map((value, index) => (
-              <motion.div 
+              <div 
                 key={index} 
-                variants={cardVariants}
-                initial="hidden"
-                animate={inView1 ? "visible" : "hidden"}
-                transition={{ delay: index * 0.2 }}
+                className={`transition-opacity duration-700 ease-out transform ${isVisible[`value-${index}`] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                style={{ transitionDelay: `${index * 150}ms` }}
               >
                 <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
                   <div className={`w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-6 ${value.color}`}>
@@ -181,38 +178,30 @@ const Home = () => {
                   <h3 className="text-2xl font-bold text-gray-900 mb-4">{value.title}</h3>
                   <p className="text-gray-600 leading-relaxed">{value.description}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Impact Stats */}
-      <motion.section 
-        className="py-20 bg-blue-600"
-        ref={ref2}
-        initial="hidden"
-        animate={inView2 ? "visible" : "hidden"}
-        variants={sectionVariants}
-      >
+      <section id="impact-stats" className={`py-20 bg-blue-600 animate-on-scroll ${getAnimationClass('impact-stats', 'fade-in')}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className={`text-3xl md:text-4xl font-bold text-white mb-4 ${getAnimationClass('impact-stats-header', 'fade-in')}`}>
               Our Global Impact
             </h2>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+            <p className={`text-xl text-blue-100 max-w-3xl mx-auto ${getAnimationClass('impact-stats-subheader', 'fade-in fade-in-200')}`}>
               Six years of dedication, innovation, and transformation
             </p>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {impactStats.map((stat, index) => (
-              <motion.div 
-                key={index}
-                variants={cardVariants}
-                initial="hidden"
-                animate={inView2 ? "visible" : "hidden"}
-                transition={{ delay: index * 0.15 }}
+              <div
+                key={index} 
+                className={`transition-opacity duration-700 ease-out transform ${isVisible[`stat-${index}`] ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}
+                style={{ transitionDelay: `${index * 150}ms` }}
               >
                 <div className="text-center">
                   <div className="w-16 h-16 mx-auto bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
@@ -227,38 +216,30 @@ const Home = () => {
                   </div>
                   <div className="text-blue-100 font-medium">{stat.label}</div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Programs Preview */}
-      <motion.section 
-        className="py-20"
-        ref={ref3}
-        initial="hidden"
-        animate={inView3 ? "visible" : "hidden"}
-        variants={sectionVariants}
-      >
+      <section id="programs" className={`py-20 animate-on-scroll ${getAnimationClass('programs', 'fade-in')}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className={`text-3xl md:text-4xl font-bold text-gray-900 mb-4 ${getAnimationClass('programs-header', 'fade-in')}`}>
               Our Programs
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className={`text-xl text-gray-600 max-w-3xl mx-auto ${getAnimationClass('programs-subheader', 'fade-in fade-in-200')}`}>
               Innovative initiatives designed to create lasting impact
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {programs.map((program, index) => (
-              <motion.div 
-                key={index}
-                variants={cardVariants}
-                initial="hidden"
-                animate={inView3 ? "visible" : "hidden"}
-                transition={{ delay: index * 0.2 }}
+              <div 
+                key={index} 
+                className={`transition-opacity duration-700 ease-out transform ${isVisible[`program-${index}`] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                style={{ transitionDelay: `${index * 150}ms` }}
               >
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                   <img
@@ -278,7 +259,7 @@ const Home = () => {
                     </Link>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
           
@@ -292,15 +273,12 @@ const Home = () => {
             </Link>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* CTA Section */}
-      <motion.section 
-        className="py-20 bg-gradient-to-r from-purple-600 to-blue-600 text-white"
-        ref={ref4}
-        initial="hidden"
-        animate={inView4 ? "visible" : "hidden"}
-        variants={sectionVariants}
+      <section 
+        id="cta" 
+        className={`py-20 bg-gradient-to-r from-purple-600 to-blue-600 text-white animate-on-scroll ${getAnimationClass('cta', 'fade-in')}`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
@@ -325,7 +303,7 @@ const Home = () => {
             </Link>
           </div>
         </div>
-      </motion.section>
+      </section>
     </div>
   );
 };

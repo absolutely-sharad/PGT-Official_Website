@@ -1,50 +1,72 @@
 import React from 'react';
 
 const HeroBackground = () => {
-  return (
-    <div className="absolute inset-x-0 bottom-0 overflow-hidden z-0">
-      <style>
-        {`
-          .wave-animation > svg {
-            position: absolute;
-            left: 0;
-            width: 200%;
-            height: 100%;
-            transform: translateX(-50%);
-            animation: wave 10s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
-            bottom: 0;
-            fill: currentColor;
-          }
+  return (
+    <div className="absolute inset-x-0 bottom-0 overflow-hidden z-0">
+      <style>
+        {`
+          .wave-container {
+            position: absolute;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            transform: translateX(-50%);
+            bottom: 0;
+          }
 
-          .wave-animation > svg:nth-child(2) {
-            animation: wave-reverse 10s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
-            animation-delay: -5s;
-            opacity: 0.5;
-          }
-
-          @keyframes wave {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
+          .wave {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-repeat: repeat-x;
+            opacity: 0.8;
+            bottom: 0;
+          }
           
-          @keyframes wave-reverse {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0); }
+          /* New, more complex wave animation */
+          .wave-anim-1 {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="1" d="M0,160L48,170.7C96,181,192,203,288,202.7C384,203,480,181,576,165.3C672,149,768,139,864,149.3C960,160,1056,192,1152,192C1248,192,1344,160,1392,144L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            animation: wave1 8s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+            opacity: 0.8;
+            background-size: 1440px 100px;
           }
-        `}
-      </style>
-      <div className="relative h-48 sm:h-64 wave-animation">
-        {/* Main Wave */}
-        <svg viewBox="0 0 1440 320" preserveAspectRatio="none" className="text-white">
-          <path d="M0,192L60,192C120,192,240,192,360,208C480,224,600,256,720,256C840,256,960,224,1080,208C1200,192,1320,192,1380,192L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
-        </svg>
-        {/* Secondary Wave for effect */}
-        <svg viewBox="0 0 1440 320" preserveAspectRatio="none" className="text-white">
-          <path d="M0,192L60,192C120,192,240,192,360,208C480,224,600,256,720,256C840,256,960,224,1080,208C1200,192,1320,192,1380,192L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
-        </svg>
-      </div>
-    </div>
-  );
+          .wave-anim-2 {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="1" d="M0,128L60,144C120,160,240,192,360,192C480,192,600,160,720,138.7C840,117,960,107,1080,106.7C1200,107,1320,117,1380,122.7L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>');
+            animation: wave2 12s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+            opacity: 0.6;
+            background-size: 1440px 120px;
+          }
+          .wave-anim-3 {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,170.7C384,181,480,171,576,149.3C672,128,768,96,864,85.3C960,75,1056,85,1152,101.3C1248,117,1344,139,1392,149.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            animation: wave3 15s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+            opacity: 0.4;
+            background-size: 1440px 110px;
+          }
+
+          @keyframes wave1 {
+            0% { transform: translateX(0) translateZ(0) scaleY(1); }
+            50% { transform: translateX(-50%) translateZ(0) scaleY(0.95); }
+            100% { transform: translateX(-100%) translateZ(0) scaleY(1); }
+          }
+          @keyframes wave2 {
+            0% { transform: translateX(0) translateZ(0) scaleY(1.05); }
+            50% { transform: translateX(-50%) translateZ(0) scaleY(1); }
+            100% { transform: translateX(-100%) translateZ(0) scaleY(1.05); }
+          }
+          @keyframes wave3 {
+            0% { transform: translateX(0) translateZ(0) scaleY(0.9); }
+            50% { transform: translateX(-50%) translateZ(0) scaleY(1.0); }
+            100% { transform: translateX(-100%) translateZ(0) scaleY(0.9); }
+          }
+        `}
+      </style>
+      <div className="relative h-48 sm:h-64">
+        <div className="wave wave-anim-1 absolute inset-x-0 bottom-0 text-white"></div>
+        <div className="wave wave-anim-2 absolute inset-x-0 bottom-0 text-white"></div>
+        <div className="wave wave-anim-3 absolute inset-x-0 bottom-0 text-white"></div>
+      </div>
+    </div>
+  );
 };
 
 export default HeroBackground;

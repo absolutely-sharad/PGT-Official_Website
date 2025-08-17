@@ -1,53 +1,50 @@
-import React from 'react';
-import { useInView } from 'react-intersection-observer';
+import React, { useRef, useEffect, useState } from 'react';
 
-interface AnimatedCardProps {
-  children: React.ReactNode;
-  className?: string;
-  animation?: 'fadeIn' | 'slideUp' | 'slideLeft' | 'slideRight' | 'zoomIn' | 'slideDown';
-  delay?: number;
-}
+const AnimatedCard = ({ children, animation = 'slideUp', delay = 0 }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef(null);
 
-const AnimatedCard: React.FC<AnimatedCardProps> = ({
-  children,
-  className = '',
-  animation = 'fadeIn',
-  delay = 0
-}) => {
-  const { ref, inView } = useInView({
-    threshold: 0.1,
-    triggerOnce: true
-  });
-
-  const getAnimationClasses = () => {
-    const baseClasses = 'transition-all duration-700 ease-out';
-    
-    if (!inView) {
-      switch (animation) {
-        case 'slideUp':
-          return `${baseClasses} opacity-0 translate-y-8`;
-        case 'slideDown':
-          return `${baseClasses} opacity-0 -translate-y-8`;
-        case 'slideLeft':
-          return `${baseClasses} opacity-0 translate-x-8`;
-        case 'slideRight':
-          return `${baseClasses} opacity-0 -translate-x-8`;
-        case 'zoomIn':
-          return `${baseClasses} opacity-0 scale-95`;
-        default:
-          return `${baseClasses} opacity-0`;
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target); // Stop observing once it's visible
+        }
+      },
+      {
+        threshold: 0.1, // Trigger when 10% of the element is visible
       }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
     }
-    
-    return `${baseClasses} opacity-100 translate-y-0 translate-x-0 scale-100`;
+
+    // Cleanup function
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
+
+  const animationClasses = {
+    slideUp: 'transform translate-y-10 opacity-0 transition-all duration-700 ease-out',
+    fadeIn: 'opacity-0 transition-opacity duration-1000 ease-in',
+    zoomIn: 'transform scale-95 opacity-0 transition-all duration-700 ease-out',
   };
 
+  const visibleClasses = {
+    slideUp: 'transform translate-y-0 opacity-100',
+    fadeIn: 'opacity-100',
+    zoomIn: 'transform scale-100 opacity-100',
+  };
+
+  const combinedClasses = `${animationClasses[animation]} ${isVisible ? visibleClasses[animation] : ''}`;
+
   return (
-    <div
-      ref={ref}
-      className={`${getAnimationClasses()} ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
+    <div ref={ref} className={combinedClasses} style={{ transitionDelay: `${delay}ms` }}>
       {children}
     </div>
   );

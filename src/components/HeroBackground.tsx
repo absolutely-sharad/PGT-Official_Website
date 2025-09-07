@@ -68,6 +68,7 @@ const HeroBackground = () => {
       </div>
     </div>
             background-size: 2880px 110px;
+  )
 };
 
 export default HeroBackground;

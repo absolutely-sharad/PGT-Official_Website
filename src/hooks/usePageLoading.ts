@@ -7,11 +7,31 @@ export const usePageLoading = () => {
 
   useEffect(() => {
     setLoading(true);
-    const timer = setTimeout(() => {
+    
+    // Check if document is already loaded
+    if (document.readyState === 'complete') {
       setLoading(false);
-    }, 800); // Adjust timing as needed
+      return;
+    }
+    
+    // Wait for all resources to load
+    const handleLoad = () => {
+      // Small delay to ensure smooth transition
+      setTimeout(() => setLoading(false), 300);
+    };
+    
+    // Listen for window load event
+    window.addEventListener('load', handleLoad);
+    
+    // Fallback timeout to prevent infinite loading
+    const fallbackTimer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
 
-    return () => clearTimeout(timer);
+    return () => {
+      window.removeEventListener('load', handleLoad);
+      clearTimeout(fallbackTimer);
+    };
   }, [location.pathname]);
 
   return loading;

@@ -283,7 +283,8 @@ const Impact = () => {
       </section>
 
       {/* Future Goals */}
-      <section className="py-20 bg-gradient-to-r from-green-600 to-blue-600 text-white">
+      <section className="relative py-20 text-white overflow-hidden">
+        <AnimatedSectionBackground variant="green" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedCard animation="fadeIn">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">

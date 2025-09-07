@@ -4,6 +4,7 @@ import { ArrowRight, Target, TrendingUp, Zap, Users, Globe, Award } from 'lucide
 import CountUpNumber from '../components/CountUpNumber';
 import AnimatedCard from '../components/AnimatedCard'; // The corrected component
 import HeroBackground from '../components/HeroBackground'; // The new wave component
+import AnimatedSectionBackground from '../components/AnimatedSectionBackground';
 
 const Home = () => {
   const coreValues = [

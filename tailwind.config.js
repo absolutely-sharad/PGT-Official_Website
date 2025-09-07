@@ -13,6 +13,7 @@ export default {
         'wave-slow': 'wave-slow 15s ease-in-out infinite',
         'wave-slower': 'wave-slower 20s ease-in-out infinite',
         'pause-marquee': 'paused',
+        'bg-shift': 'bg-shift 20s ease-in-out infinite',
       },
       keyframes: {
         marquee: {
@@ -37,6 +38,20 @@ export default {
           '50%': {
             'background-size': '400% 400%',
             'background-position': '100% 50%'
+          },
+        },
+        'bg-shift': {
+          '0%, 100%': {
+            transform: 'translateX(0%) translateY(0%)',
+          },
+          '25%': {
+            transform: 'translateX(1%) translateY(-1%)',
+          },
+          '50%': {
+            transform: 'translateX(-1%) translateY(1%)',
+          },
+          '75%': {
+            transform: 'translateX(1%) translateY(1%)',
           },
         },
         float: {
@@ -91,6 +106,9 @@ export default {
             transform: 'translateX(10%) translateY(5px)',
           },
         },
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       },
     },
   },

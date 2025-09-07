@@ -1,52 +1,69 @@
 import React, { useRef, useEffect, useState } from 'react';
 
-const AnimatedCard = ({ children, animation = 'slideUp', delay = 0 }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef(null);
+interface AnimatedCardProps {
+  children: React.ReactNode;
+  animation?: 'slideUp' | 'slideLeft' | 'slideRight' | 'fadeIn' | 'zoomIn';
+  delay?: number;
+  className?: string;
+}
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      {
-        threshold: 0.1,
-      }
-    );
+const AnimatedCard: React.FC<AnimatedCardProps> = ({ 
+  children, 
+  animation = 'slideUp', 
+  delay = 0,
+  className = ''
+}) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef(null);
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '50px 0px -50px 0px'
+      }
+    );
 
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
-  }, []);
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
 
-  const animationClasses = {
-    slideUp: 'transform translate-y-10 opacity-0 transition-all duration-700 ease-out',
-    fadeIn: 'opacity-0 transition-opacity duration-1000 ease-in',
-    zoomIn: 'transform scale-95 opacity-0 transition-all duration-700 ease-out',
-  };
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
 
-  const visibleClasses = {
-    slideUp: 'transform translate-y-0 opacity-100',
-    fadeIn: 'opacity-100',
-    zoomIn: 'transform scale-100 opacity-100',
-  };
+  const animationClasses = {
+    slideUp: 'transform translate-y-10 opacity-0 transition-all duration-700 ease-out',
+    slideLeft: 'transform translate-x-10 opacity-0 transition-all duration-700 ease-out',
+    slideRight: 'transform -translate-x-10 opacity-0 transition-all duration-700 ease-out',
+    fadeIn: 'opacity-0 transition-opacity duration-1000 ease-in',
+    zoomIn: 'transform scale-95 opacity-0 transition-all duration-700 ease-out',
+  };
 
-  const combinedClasses = `${animationClasses[animation]} ${isVisible ? visibleClasses[animation] : ''}`;
+  const visibleClasses = {
+    slideUp: 'transform translate-y-0 opacity-100',
+    slideLeft: 'transform translate-x-0 opacity-100',
+    slideRight: 'transform translate-x-0 opacity-100',
+    fadeIn: 'opacity-100',
+    zoomIn: 'transform scale-100 opacity-100',
+  };
 
-  return (
-    <div ref={ref} className={combinedClasses} style={{ transitionDelay: `${delay}ms` }}>
-      {children}
-    </div>
-  );
+  const combinedClasses = `${className} ${animationClasses[animation]} ${isVisible ? visibleClasses[animation] : ''}`;
+
+  return (
+    <div ref={ref} className={combinedClasses} style={{ transitionDelay: `${delay}ms` }}>
+      {children}
+    </div>
+  );
 };
 
 export default AnimatedCard;

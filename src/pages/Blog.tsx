@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Heart } from 'lucide-react';
+import AnimatedCard from '../components/AnimatedCard';
 
 const BlogCard = ({ post }) => {
     const [likes, setLikes] = useState(0);

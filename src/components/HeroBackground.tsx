@@ -67,7 +67,6 @@ const HeroBackground = () => {
         <div className="wave wave-anim-3"></div>
       </div>
     </div>
-            background-size: 2880px 110px;
   )
 };
 

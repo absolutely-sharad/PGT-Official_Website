@@ -2,6 +2,7 @@ import React from 'react';
 import { Calendar, Award, Users, Globe, Zap, Target } from 'lucide-react';
 import AnimatedCard from '../components/AnimatedCard';
 import CountUpNumber from '../components/CountUpNumber';
+import AnimatedSectionBackground from '../components/AnimatedSectionBackground';
 
 const Timeline = () => {
   const timelineEvents = [

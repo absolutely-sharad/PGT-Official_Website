@@ -2,6 +2,7 @@ import React from 'react';
 import { Users, Globe, Award, TrendingUp, Heart, Star } from 'lucide-react';
 import CountUpNumber from '../components/CountUpNumber';
 import AnimatedCard from '../components/AnimatedCard';
+import AnimatedSectionBackground from '../components/AnimatedSectionBackground';
 
 const Impact = () => {
   const impactStats = [

@@ -53,13 +53,9 @@ const BlogCard = ({ post, index }) => {
   const handleLike = async () => {
     if (loading) return;
 
+    // Require authentication to like posts
     if (!user) {
-      // Handle likes for non-authenticated users with localStorage
-      const newLikes = isLiked ? likes - 1 : likes + 1;
-      const newIsLiked = !isLiked;
-      setLikes(newLikes);
-      setIsLiked(newIsLiked);
-      localStorage.setItem(`blog-likes-${post.id}`, JSON.stringify({ count: newLikes, liked: newIsLiked }));
+      toast.error('Please sign in to like posts');
       return;
     }
 
@@ -288,12 +284,12 @@ const Blog = () => {
       <section className="py-12 bg-white sticky top-16 z-40 border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedCard animation="slideUp">
-            <div className="flex flex-wrap justify-center gap-2">
+            <div className="flex flex-wrap justify-center gap-2 text-center">
               {categories.map((category) => (
                 <button
                   key={category.id}
                   onClick={() => setActiveCategory(category.id)}
-                  className={`px-6 py-3 rounded-full font-medium transition-colors ${
+                  className={`px-6 py-3 rounded-full font-medium transition-colors text-center ${
                     activeCategory === category.id
                       ? 'bg-blue-600 text-white'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'

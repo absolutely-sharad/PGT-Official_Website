@@ -95,8 +95,18 @@ const Dashboard = () => {
   const handleSaveProfile = async () => {
     try {
       await updateProfile(editData)
-      setProfile({ ...profile, ...editData })
+      // Refresh profile data after update
+      const { data: updatedProfile } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', user!.id)
+        .single()
+      
+      if (updatedProfile) {
+        setProfile(updatedProfile)
+      }
       setEditMode(false)
+      toast.success('Profile updated successfully!')
     } catch (error) {}
   }
 
@@ -125,6 +135,8 @@ const Dashboard = () => {
 
       reader.readAsDataURL(file);
     } catch (error) {
+      console.error('Error saving profile:', error)
+      toast.error('Failed to update profile')
       console.error('Error uploading image:', error)
       toast.error('Failed to update profile photo')
     }

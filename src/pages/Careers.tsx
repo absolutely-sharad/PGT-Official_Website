@@ -63,14 +63,19 @@ const Careers = () => {
   // - If user exists, we also log the activity to Supabase.
   // - For 'internship' positions we show a toast and do not redirect.
   const handleApply = async (positionTitle, positionType) => {
-    // If internship -> show informational toast and return (no redirect)
+    // If internship -> show popup message and return (no redirect)
     if (positionType === 'internship') {
-      toast('Internship opportunities will come soon. Keep checking this page for updates!');
+      toast.success('Internship opportunities will come soon. Keep checking this page for updates!', {
+        duration: 4000,
+        style: {
+          background: '#3B82F6',
+          color: 'white',
+        },
+      });
       return;
     }
 
-    // positionType === 'job' path from here on
-    // Try logging activity only if user exists
+    // For job positions, always redirect to Google Form
     if (user) {
       try {
         await supabase
@@ -86,14 +91,14 @@ const Careers = () => {
         toast.success('Logging application... Redirecting to application form...');
       } catch (error) {
         console.error('Error logging activity:', error);
-        toast.error('Could not log application — redirecting anyway...');
+        toast('Redirecting to application form...');
       }
     } else {
       // Not signed in — still redirect (but don't attempt to log)
       toast('Redirecting to application form...');
     }
 
-    // open google form for job applications (always open for job)
+    // Always open the Google Form for job applications
     window.open(
       'https://docs.google.com/forms/d/e/1FAIpQLScuNgMbLFhWx-yLSNK-b0JnMeWNdREAYTVi8owvWrxNgXwmRw/viewform',
       '_blank'

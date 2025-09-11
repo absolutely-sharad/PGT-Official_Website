@@ -164,12 +164,12 @@ const Gallery = () => {
       <section className="py-12 bg-white sticky top-16 z-40 border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedCard animation="slideUp">
-            <div className="flex flex-wrap justify-center gap-2">
+            <div className="flex flex-wrap justify-center gap-2 text-center">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-6 py-3 rounded-full font-medium transition-colors ${
+                className={`px-6 py-3 rounded-full font-medium transition-colors text-center ${
                   activeTab === tab.id
                     ? 'bg-blue-600 text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import AuthModal from './AuthModal'
+import toast from 'react-hot-toast'
 
 interface ProtectedActionProps {
   children: React.ReactNode
@@ -21,6 +22,7 @@ const ProtectedAction: React.FC<ProtectedActionProps> = ({
   const handleClick = (e: React.MouseEvent) => {
     if (requireAuth && !user) {
       e.preventDefault()
+      toast.error('Please sign in to perform this action')
       setShowAuthModal(true)
     } else if (onAction) {
       onAction()

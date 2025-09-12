@@ -14,6 +14,7 @@ export default {
         'wave-slower': 'wave-slower 20s ease-in-out infinite',
         'pause-marquee': 'paused',
         'bg-shift': 'bg-shift 20s ease-in-out infinite',
+        'bounce-gentle': 'bounce-gentle 2s ease-in-out infinite',
       },
       keyframes: {
         marquee: {
@@ -104,6 +105,14 @@ export default {
           },
           '50%': {
             transform: 'translateX(10%) translateY(5px)',
+          },
+        },
+        'bounce-gentle': {
+          '0%, 100%': {
+            transform: 'translateY(0)',
+          },
+          '50%': {
+            transform: 'translateY(-2px)',
           },
         },
       },

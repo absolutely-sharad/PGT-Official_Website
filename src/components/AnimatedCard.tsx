@@ -26,7 +26,7 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
       },
       {
         threshold: 0.1,
-        rootMargin: '50px 0px -50px 0px'
+        rootMargin: '100px 0px -50px 0px'
       }
     );
 
@@ -42,11 +42,11 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
   }, []);
 
   const animationClasses = {
-    slideUp: 'transform translate-y-10 opacity-0 transition-all duration-700 ease-out',
-    slideLeft: 'transform translate-x-10 opacity-0 transition-all duration-700 ease-out',
-    slideRight: 'transform -translate-x-10 opacity-0 transition-all duration-700 ease-out',
-    fadeIn: 'opacity-0 transition-opacity duration-1000 ease-in',
-    zoomIn: 'transform scale-95 opacity-0 transition-all duration-700 ease-out',
+    slideUp: 'transform translate-y-8 opacity-0 transition-all duration-500 ease-out',
+    slideLeft: 'transform translate-x-8 opacity-0 transition-all duration-500 ease-out',
+    slideRight: 'transform -translate-x-8 opacity-0 transition-all duration-500 ease-out',
+    fadeIn: 'opacity-0 transition-opacity duration-600 ease-out',
+    zoomIn: 'transform scale-98 opacity-0 transition-all duration-500 ease-out',
   };
 
   const visibleClasses = {

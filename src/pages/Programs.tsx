@@ -197,24 +197,26 @@ const Programs = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 text-white overflow-hidden">
+      <section className="relative py-16 text-white overflow-hidden">
         <AnimatedSectionBackground variant="green" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <AnimatedCard animation="fadeIn">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to Join a Program?
           </h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto text-green-100">
+            <p className="text-lg mb-8 max-w-2xl mx-auto text-green-100">
             Take the next step in your transformation journey. Our programs are designed to support you every step of the way.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+              <button className="bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 hover:scale-105 inline-flex items-center justify-center shadow-lg">
               Apply Now
               <ArrowRight className="ml-2 h-5 w-5" />
             </button>
-            <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-colors">
+              <button className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-all duration-300 hover:scale-105 shadow-lg">
               Schedule Consultation
             </button>
-          </div>
+            </div>
+          </AnimatedCard>
         </div>
       </section>
     </div>

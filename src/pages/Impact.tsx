@@ -284,49 +284,49 @@ const Impact = () => {
       </section>
 
       {/* Future Goals */}
-      <section className="relative py-20 text-white overflow-hidden">
+      <section className="relative py-16 text-white overflow-hidden">
         <AnimatedSectionBackground variant="green" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedCard animation="fadeIn">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Our 2030 Vision
             </h2>
+            <p className="text-lg text-green-100 mb-10 max-w-2xl mx-auto">
+              Building on our success, we're committed to expanding our impact and reaching even more lives
+            </p>
           </AnimatedCard>
-          <p className="text-xl mb-12 max-w-3xl mx-auto text-green-100">
-            Building on our success, we're committed to expanding our impact and reaching even more lives
-          </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             <AnimatedCard animation="slideUp" delay={0}>
-              <div className="text-center">
-                <div className="text-5xl font-bold mb-2">
+              <div className="bg-white/15 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/20 hover:bg-white/20 transition-all duration-300">
+                <div className="text-3xl md:text-4xl font-bold mb-2">
                   <CountUpNumber end={100} suffix="K+" duration={3000} />
                 </div>
-                <div className="text-green-100 text-lg">Lives to Transform</div>
+                <div className="text-green-100 text-sm font-medium">Lives to Transform</div>
               </div>
             </AnimatedCard>
             <AnimatedCard animation="slideUp" delay={200}>
-              <div className="text-center">
-                <div className="text-5xl font-bold mb-2">
+              <div className="bg-white/15 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/20 hover:bg-white/20 transition-all duration-300">
+                <div className="text-3xl md:text-4xl font-bold mb-2">
                   <CountUpNumber end={100} duration={3000} />
                 </div>
-                <div className="text-green-100 text-lg">Countries to Reach</div>
+                <div className="text-green-100 text-sm font-medium">Countries to Reach</div>
               </div>
             </AnimatedCard>
             <AnimatedCard animation="slideUp" delay={400}>
-              <div className="text-center">
-                <div className="text-5xl font-bold mb-2">
+              <div className="bg-white/15 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/20 hover:bg-white/20 transition-all duration-300">
+                <div className="text-3xl md:text-4xl font-bold mb-2">
                   <CountUpNumber end={1} suffix="M+" duration={3000} />
                 </div>
-                <div className="text-green-100 text-lg">Indirect Beneficiaries</div>
+                <div className="text-green-100 text-sm font-medium">Indirect Beneficiaries</div>
               </div>
             </AnimatedCard>
             <AnimatedCard animation="slideUp" delay={600}>
-              <div className="text-center">
-                <div className="text-5xl font-bold mb-2">
+              <div className="bg-white/15 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/20 hover:bg-white/20 transition-all duration-300">
+                <div className="text-3xl md:text-4xl font-bold mb-2">
                   <CountUpNumber end={50} suffix="+" duration={3000} />
                 </div>
-                <div className="text-green-100 text-lg">New Programs</div>
+                <div className="text-green-100 text-sm font-medium">New Programs</div>
               </div>
             </AnimatedCard>
           </div>

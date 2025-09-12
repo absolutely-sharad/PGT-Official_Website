@@ -164,15 +164,15 @@ const Gallery = () => {
       <section className="py-12 bg-white sticky top-16 z-40 border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedCard animation="slideUp">
-            <div className="flex flex-wrap justify-center gap-2 text-center">
+            <div className="flex flex-wrap justify-center gap-3 text-center">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-6 py-3 rounded-full font-medium transition-colors text-center ${
+                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 text-center shadow-md hover:shadow-lg transform hover:scale-105 ${
                   activeTab === tab.id
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                    : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
                 }`}
               >
                 {tab.label} ({tab.count})

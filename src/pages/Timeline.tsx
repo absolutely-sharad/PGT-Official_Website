@@ -186,35 +186,47 @@ const Timeline = () => {
 
       {/* Future Vision */}
       <AnimatedCard animation="fadeIn">
-  <section className="relative py-20 text-white overflow-hidden">
+  <section className="relative py-16 text-white overflow-hidden">
     <AnimatedSectionBackground variant="green" />
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 className="text-3xl md:text-4xl font-bold mb-12">Looking Ahead</h2>
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 className="text-3xl md:text-4xl font-bold mb-8">Looking Ahead</h2>
+      <p className="text-lg text-green-100 mb-10 max-w-2xl mx-auto">
+        Our vision for the future is ambitious yet achievable, built on the foundation of our past successes
+      </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
         {/* Impact Target */}
-        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-md">
-          <div className="text-4xl font-bold text-white mb-2">
+        <AnimatedCard animation="slideUp" delay={100}>
+          <div className="bg-white/15 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/20 hover:bg-white/20 transition-all duration-300">
+            <div className="text-3xl md:text-4xl font-bold text-white mb-2">
             <CountUpNumber end={100000} suffix="+" duration={3000} />
           </div>
-          <p className="text-lg text-green-100">Lives to Impact</p>
-        </div>
+            <p className="text-base font-medium text-green-100">Lives to Impact</p>
+            <p className="text-sm text-green-200 mt-1">By 2030</p>
+          </div>
+        </AnimatedCard>
 
         {/* Countries to Reach */}
-        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-md">
-          <div className="text-4xl font-bold text-white mb-2">
+        <AnimatedCard animation="slideUp" delay={200}>
+          <div className="bg-white/15 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/20 hover:bg-white/20 transition-all duration-300">
+            <div className="text-3xl md:text-4xl font-bold text-white mb-2">
             <CountUpNumber end={100} duration={3000} />
           </div>
-          <p className="text-lg text-green-100">Countries to Reach</p>
-        </div>
+            <p className="text-base font-medium text-green-100">Countries to Reach</p>
+            <p className="text-sm text-green-200 mt-1">Global Presence</p>
+          </div>
+        </AnimatedCard>
 
         {/* Target Year */}
-        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-md">
-          <div className="text-4xl font-bold text-white mb-2">
+        <AnimatedCard animation="slideUp" delay={300}>
+          <div className="bg-white/15 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/20 hover:bg-white/20 transition-all duration-300">
+            <div className="text-3xl md:text-4xl font-bold text-white mb-2">
             <CountUpNumber end={2030} duration={3000} />
           </div>
-          <p className="text-lg text-green-100">Target Year</p>
-        </div>
+            <p className="text-base font-medium text-green-100">Target Year</p>
+            <p className="text-sm text-green-200 mt-1">Vision Timeline</p>
+          </div>
+        </AnimatedCard>
       </div>
     </div>
   </section>
